@@ -1,2 +1,2 @@
-# Testing ui / rest services by using robot framework
-Real test automation examples for validating web apps and services by using robot framework and python. All tests are developed to test very useful cypress's real world application: https://github.com/cypress-io/cypress-realworld-app.
+# Testing ui / rest services by using robot framework and python
+Design of real test automation framework including examples for validating web apps and services by using robot framework and python. All tests are developed to test helpful cypress's real world application: https://github.com/cypress-io/cypress-realworld-app. To demonstrate the possibility of sending individual test statuses to any log management tool and to visualise them in the dashboard, robot's listener feature is used to perform that task. 
