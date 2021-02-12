@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 3.2.2 (Python 3.7.3 on win32)" generated="20210211 22:09:53.230" rpa="false">
+<suite id="s1" name="Rwa Api" source="C:\Users\kristd\PycharmProjects\train\api\testsuites\rwa\tests\rwa_api.robot">
+<kw name="Setup" library="SuiteSetup" type="setup">
+<doc>KW prihlasi uzivatele do aplikace rwa.</doc>
+<msg timestamp="20210211 22:09:54.084" level="TRACE">Arguments: [  ]</msg>
+<msg timestamp="20210211 22:09:54.111" level="DEBUG">Starting new HTTP connection (1): localhost:3001</msg>
+<msg timestamp="20210211 22:09:54.272" level="DEBUG">http://localhost:3001 "POST /login HTTP/1.1" 200 466</msg>
+<msg timestamp="20210211 22:09:54.273" level="INFO">${USER_ID} = t45AiwidW</msg>
+<msg timestamp="20210211 22:09:54.274" level="INFO">${USER_BALANCE} = 168137</msg>
+<msg timestamp="20210211 22:09:54.276" level="WARN">check-login: doslo k uspesnemu prihlaseni uzivatele: Katharina_Bernier</msg>
+<msg timestamp="20210211 22:09:54.277" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20210211 22:09:54.084" endtime="20210211 22:09:54.277"></status>
+</kw>
+<test id="s1-t1" name="Get notifications">
+<kw name="Get Notification List" library="Notifications">
+<doc>KW vraci python slovnik se vsemi notifikacemi prihlaseneho uzivatele pomoci GET /notifications.</doc>
+<msg timestamp="20210211 22:09:54.277" level="TRACE">Arguments: [  ]</msg>
+<msg timestamp="20210211 22:09:54.288" level="DEBUG">http://localhost:3001 "GET /notifications HTTP/1.1" 200 2142</msg>
+<msg timestamp="20210211 22:09:54.289" level="TRACE">Return: {'results': [{'createdAt': '2019-10-15T13:21:49.772Z',
+              'id': '9m-W-uI5fQUF',
+              'isRead': False,
+              'likeId': 'heOJ8kL74llw',
+              'modifiedAt': '2020-05-21T20:08:05.787Z',
+              'transactionId': 'PPrW38YZtQD',
+              'userFullName': 'Ibrahim Dickens',
+              'userId': 't45AiwidW',
+              'uuid': 'f4a10fbf-d12e-4a6d-b888-d86989b66687'},
+             {'createdAt': '2019-11-12T12:51:00.239Z',
+              'id': 'tk8jNBQURvQz',
+              'isRead': False,
+              'modifiedAt': '2020-05-21T18:26:16.366Z',
+              'status': 'received',
+              'transactionId': 'xAsSYDsiEGSj',
+              'userFullName': 'Kaylin Homenick',
+              'userId': 't45AiwidW',
+              'uuid': 'c4ece032-38e3-47e9-8284-fbfa6d96ef9a'},
+             {'createdAt': '2019-09-20T22:27:10.721Z',
+              'id': '95qRwfJnSORQ',
+              'isRead': False,
+              'modifiedAt': '2020-05-21T14:55:58.008Z',
+              'status': 'requested',
+              'transactionId': 'xAsSYDsiEGSj',
+              'userFullName': 'Kaylin Homenick',
+              'userId': 't45AiwidW',
+              'uuid': '0b5a0f25-c56b-4434-ba4d-21f133d8964f'},
+             {'createdAt': '2019-11-14T17:00:33.637Z',
+              'id': 'Fq8xLCRtpWhT',
+              'isRead': False,
+              'modifiedAt': '2020-05-21T12:51:07.700Z',
+              'status': 'received',
+              'transactionId': '76Vs0Fye9Mwt',
+              'userFullName': 'Edgar Johns',
+              'userId': 't45AiwidW',
+              'uuid': '0e2dc23a-1d85-49e5-98fb-93f9e8f961bb'},
+             {'commentId': 'K3HLpKcGKDiP',
+              'createdAt': '2019-06-20T06:13:18.420Z',
+              'id': '88Nrddj3XCir',
+              'isRead': False,
+              'modifiedAt': '2020-05-21T11:22:54.822Z',
+              'transactionId': 'lPUBZKlc4MLR',
+              'userFullName': 'Edgar Johns',
+              'userId': 't45AiwidW',
+              'uuid': '7b1697cf-4240-4eed-bc19-e60f60268b31'},
+             {'createdAt': '2020-03-08T01:11:42.032Z',
+              'id': 'Bf5th29A1FHa',
+              'isRead': False,
+              'modifiedAt': '2020-05-21T09:41:32.115Z',
+              'status': 'requested',
+              'transactionId': '76Vs0Fye9Mwt',
+              'userFullName': 'Edgar Johns',
+              'userId': 't45AiwidW',
+              'uuid': 'f9a7bdb3-7c32-44bf-8ce6-af31ebffd7b3'},
+             {'createdAt': '2020-01-27T17:56:05.262Z',
+              'id': 'kpQnRR8__imz',
+              'isRead': False,
+              'modifiedAt': '2020-05-21T09:41:18.687Z',
+              'status': 'received',
+              'transactionId': 'b0mCj0O2EKHN',
+              'userFullName': 'Edgar Johns',
+              'userId': 't45AiwidW',
+              'uuid': '28e9c413-eb1c-488b-9a37-0755fd35cd15'},
+             {'createdAt': '2019-11-25T00:43:47.170Z',
+              'id': 'ojTwLrF1tDvQ',
+              'isRead': False,
+              'modifiedAt': '2020-05-21T02:47:36.259Z',
+              'status': 'requested',
+              'transactionId': 'b0mCj0O2EKHN',
+              'userFullName': 'Edgar Johns',
+              'userId': 't45AiwidW',
+              'uuid': '792ea312-b91f-406b-8929-77f83cdd6094'}]}</msg>
+<status status="PASS" starttime="20210211 22:09:54.277" endtime="20210211 22:09:54.292"></status>
+</kw>
+<doc>Test vrati seznam vsech notifikaci prihlaseneho uzivatele.</doc>
+<tags>
+<tag>get_notif</tag>
+<tag>smoke</tag>
+</tags>
+<status status="PASS" starttime="20210211 22:09:54.277" endtime="20210211 22:09:54.292" critical="yes"></status>
+</test>
+<test id="s1-t2" name="Delete n notifications">
+<kw name="Delete Notifications" library="Notifications">
+<doc>KW smaze 'cnt' notifikaci prihlaseneho uzivatele podle jmena 'name' v notifikaci. Notifikace se mazou pomoci
+volani PATCH /notifications/{notification_id}.
+:param name: jmeno uvedene v notifikaci
+:param notif_dict: python slovnik, ktery obsahuje vsechny notifikace prihlaseneho uzivatele
+:param cnt: pocet notifikaci ke smazani</doc>
+<arguments>
+<arg>name=Kaylin</arg>
+<arg>cnt=${1}</arg>
+</arguments>
+<msg timestamp="20210211 22:09:54.298" level="TRACE">Arguments: [ name='Kaylin' | cnt=1 ]</msg>
+<msg timestamp="20210211 22:09:54.298" level="WARN">generuju novy slovnik: 'notif_dict'</msg>
+<msg timestamp="20210211 22:09:54.307" level="DEBUG">http://localhost:3001 "GET /notifications HTTP/1.1" 200 2142</msg>
+<msg timestamp="20210211 22:09:54.360" level="DEBUG">http://localhost:3001 "PATCH /notifications/tk8jNBQURvQz HTTP/1.1" 204 0</msg>
+<msg timestamp="20210211 22:09:54.361" level="WARN">maze se notifikace se jmenem: Kaylin Homenick</msg>
+<msg timestamp="20210211 22:09:54.361" level="WARN">maze se id-cko notifikace: tk8jNBQURvQz</msg>
+<msg timestamp="20210211 22:09:54.361" level="WARN">smazano: 1 notifikaci od: Kaylin</msg>
+<msg timestamp="20210211 22:09:54.374" level="DEBUG">http://localhost:3001 "GET /notifications HTTP/1.1" 200 1875</msg>
+<msg timestamp="20210211 22:09:54.374" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20210211 22:09:54.295" endtime="20210211 22:09:54.375"></status>
+</kw>
+<doc>Test smaze n anebo vsechny notifikace prihlaseneho uzivatele podle vybraneho jmena v notifikaci.</doc>
+<tags>
+<tag>del_notif</tag>
+<tag>smoke</tag>
+</tags>
+<status status="PASS" starttime="20210211 22:09:54.294" endtime="20210211 22:09:54.375" critical="yes"></status>
+</test>
+<kw name="Teardown" library="SuiteTeardown" type="teardown">
+<doc>KW odhlasi prihlaseneho uzivatele z aplikace rwa a ukonci aktivni session.</doc>
+<msg timestamp="20210211 22:09:54.376" level="TRACE">Arguments: [  ]</msg>
+<msg timestamp="20210211 22:09:54.394" level="DEBUG">http://localhost:3001 "POST /logout HTTP/1.1" 302 23</msg>
+<msg timestamp="20210211 22:09:54.443" level="WARN">check-logout: doslo k uspesnemu odhlaseni uzivatele</msg>
+<msg timestamp="20210211 22:09:54.444" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20210211 22:09:54.376" endtime="20210211 22:09:54.444"></status>
+</kw>
+<doc>Testovaci sada obsahuje vybrane testy pro overeni chovani rwa api. Pro prihlaseni do api se pouziva
+uzivatel: Katharina_Bernier.</doc>
+<status status="PASS" starttime="20210211 22:09:53.252" endtime="20210211 22:09:54.444"></status>
+</suite>
+<statistics>
+<total>
+<stat pass="2" fail="0">Critical Tests</stat>
+<stat pass="2" fail="0">All Tests</stat>
+</total>
+<tag>
+<stat pass="1" fail="0">del_notif</stat>
+<stat pass="1" fail="0">get_notif</stat>
+<stat pass="2" fail="0">smoke</stat>
+</tag>
+<suite>
+<stat pass="2" fail="0" id="s1" name="Rwa Api">Rwa Api</stat>
+</suite>
+</statistics>
+<errors>
+<msg timestamp="20210211 22:09:53.249" level="WARN">Argumenty listeneru: ()
+</msg>
+<msg timestamp="20210211 22:09:54.276" level="WARN">check-login: doslo k uspesnemu prihlaseni uzivatele: Katharina_Bernier</msg>
+<msg timestamp="20210211 22:09:54.298" level="WARN">generuju novy slovnik: 'notif_dict'</msg>
+<msg timestamp="20210211 22:09:54.361" level="WARN">maze se notifikace se jmenem: Kaylin Homenick</msg>
+<msg timestamp="20210211 22:09:54.361" level="WARN">maze se id-cko notifikace: tk8jNBQURvQz</msg>
+<msg timestamp="20210211 22:09:54.361" level="WARN">smazano: 1 notifikaci od: Kaylin</msg>
+<msg timestamp="20210211 22:09:54.443" level="WARN">check-logout: doslo k uspesnemu odhlaseni uzivatele</msg>
+<msg timestamp="20210211 22:09:54.445" level="WARN">URL reportu: https://quickchart.io/chart?c=%7B%22type%22%3A+%22bar%22%2C+%22data%22%3A+%7B%22labels%22%3A+%5B%22Get+notifications%22%2C+%22Delete+n+notifications%22%5D%2C+%22datasets%22%3A+%5B%7B%22label%22%3A+%22Fail%22%2C+%22backgroundColor%22%3A+%22rgba%28255%2C+99%2C+132%2C+0.5%29%22%2C+%22borderColor%22%3A+%22rgb%28255%2C+99%2C+132%29%22%2C+%22borderWidth%22%3A+1%2C+%22data%22%3A+%5B0%2C+0%5D%7D%2C+%7B%22label%22%3A+%22Pass%22%2C+%22backgroundColor%22%3A+%22rgba%2854%2C+162%2C+235%2C+0.5%29%22%2C+%22borderColor%22%3A+%22rgb%2854%2C+162%2C+235%29%22%2C+%22borderWidth%22%3A+1%2C+%22data%22%3A+%5B1%2C+1%5D%7D%5D%7D%2C+%22options%22%3A+%7B%22responsive%22%3A+true%2C+%22legend%22%3A+%7B%22position%22%3A+%22top%22%7D%2C+%22title%22%3A+%7B%22display%22%3A+true%2C+%22text%22%3A+%22Automatizace+aplikace+RWA+pomoci+robot+framework%2C+python+a+selenium%22%7D%7D%7D&amp;w=500&amp;h=300&amp;bkg=%23ffffff&amp;devicePixelRatio=2.0&amp;f=png</msg>
+<msg timestamp="20210211 22:09:54.445" level="WARN">QR kod reportu: https://quickchart.io/qr?text=https://quickchart.io/chart?c=%7B%22type%22%3A+%22bar%22%2C+%22data%22%3A+%7B%22labels%22%3A+%5B%22Get+notifications%22%2C+%22Delete+n+notifications%22%5D%2C+%22datasets%22%3A+%5B%7B%22label%22%3A+%22Fail%22%2C+%22backgroundColor%22%3A+%22rgba%28255%2C+99%2C+132%2C+0.5%29%22%2C+%22borderColor%22%3A+%22rgb%28255%2C+99%2C+132%29%22%2C+%22borderWidth%22%3A+1%2C+%22data%22%3A+%5B0%2C+0%5D%7D%2C+%7B%22label%22%3A+%22Pass%22%2C+%22backgroundColor%22%3A+%22rgba%2854%2C+162%2C+235%2C+0.5%29%22%2C+%22borderColor%22%3A+%22rgb%2854%2C+162%2C+235%29%22%2C+%22borderWidth%22%3A+1%2C+%22data%22%3A+%5B1%2C+1%5D%7D%5D%7D%2C+%22options%22%3A+%7B%22responsive%22%3A+true%2C+%22legend%22%3A+%7B%22position%22%3A+%22top%22%7D%2C+%22title%22%3A+%7B%22display%22%3A+true%2C+%22text%22%3A+%22Automatizace+aplikace+RWA+pomoci+robot+framework%2C+python+a+selenium%22%7D%7D%7D&amp;w=500&amp;h=300&amp;bkg=%23ffffff&amp;devicePixelRatio=2.0&amp;f=png&amp;size=250</msg>
+</errors>
+</robot>
