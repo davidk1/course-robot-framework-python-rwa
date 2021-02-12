@@ -1,8 +1,5 @@
-import os
-import sys
 import requests
 from robot.libraries.BuiltIn import BuiltIn
-sys.path.append(os.path.join(os.path.dirname(__file__), "../../../"))    # nastavi root projektu
 from api.keywords.rwa.Auth import Auth
 
 

@@ -1,12 +1,13 @@
 *** Settings ***
 Documentation    Testovaci sada obsahuje vybrane testy pro overeni chovani rwa api. Pro prihlaseni do api se pouziva
 ...              uzivatel: Katharina_Bernier.
-Library      ../../../keywords/rwa/SuiteSetup.py
-Library      ../../../keywords/rwa/Auth.py
-Library      ../../../keywords/rwa/BankAccounts.py
-Library      ../../../keywords/rwa/Notifications.py
-Library      ../../../keywords/rwa/Transactions.py
-Library      ../../../keywords/rwa/SuiteTeardown.py
+Library    ../../../../_common/libraries/SetProjectRoot.py
+Library    ../../../keywords/rwa/SuiteSetup.py
+Library    ../../../keywords/rwa/Auth.py
+Library    ../../../keywords/rwa/BankAccounts.py
+Library    ../../../keywords/rwa/Notifications.py
+Library    ../../../keywords/rwa/Transactions.py
+Library    ../../../keywords/rwa/SuiteTeardown.py
 
 Suite Setup       setup
 Suite Teardown    teardown
@@ -36,7 +37,7 @@ Delete n notifications
     [Documentation]    Test smaze n anebo vsechny notifikace prihlaseneho uzivatele podle vybraneho jmena v notifikaci.
     [Tags]             del_notif    smoke
     #get notification list
-    delete notifications    name=Kaylin    cnt=${1}    #cnt=all
+    delete notifications    name=Edgar    cnt=${1}    #cnt=all
 
 #Send money
 #    [Documentation]    Test odesle platbu vybranemu prijemci ze seznamu pratel.
