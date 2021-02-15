@@ -12,17 +12,23 @@ class BankAccounts:
         self.builtin = BuiltIn()
         self.session = self.builtin.get_variable_value('${SESSION_ID}')
 
-    def check_bank_account(self):
-        """KW overi detaily vychoziho bankovniho uctu prihlaseneho uzivatele."""
-
-        service_method = 'get'
+    def get_bank_account(self):
+        """KW overi detaily vychoziho bankovniho uctu prihlaseneho uzivatele pomoci GET /bankAccounts."""
+        request_method = 'get'
         service_name = 'bankAccounts'
-        service_url = dataprovider.get_api_url(self.builtin.get_variable_value('${API_NAME}'), service_name)
+        request_url = dataprovider.get_api_url(self.builtin.get_variable_value('${API_NAME}'), service_name)
         # send-request: ziska detail vsech bankovnich uctu prihlaseneho uzivatele pomoci GET /bankAccounts
-        resp = send_request(self.session, service_method, service_url)
+        resp = send_request(self.session, request_method, request_url)
         resp_json = resp.json()
-        # check: kontrola slovniku v odpovedi z api vuci ocekavanemu slovniku z testovacich dat
+        # check: kontrola python slovniku v odpovedi z api vuci ocekavanemu slovniku z testovacich dat
+        self._check_bank_acc(resp_json)
+
+    def _check_bank_acc(self, resp_json):
+        """Kontrola python slovniku v odpovedi z api vuci ocekavanemu slovniku z testovacich dat.
+
+        :param resp_json: telo response vracene z api po zavolani GET /bankAccounts [python dictionary]
+        """
         expected_resp = dataprovider.get_var(self.builtin.get_variable_value('${CHECK_BANK_ACC}'), 'expected_response')
         diff = DeepDiff(resp_json, expected_resp)
-        assert diff == {}, f'Chyba v detailu bankovniho uctu vraceneho z api: {diff}'
-        logging.warning(f'check-resp-dict: detaily uctu z api jsou ok')
+        assert diff == {}, f'err: chyba v detailu bankovniho uctu vraceneho z api: {diff}'
+        logging.warning(f'get-bank-acc: detaily uctu z api jsou shodne s ocekavanymi vysledky')

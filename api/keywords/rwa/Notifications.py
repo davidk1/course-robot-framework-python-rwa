@@ -14,16 +14,17 @@ class Notifications:
 
     def get_notification_list(self):
         """KW vraci python slovnik se vsemi notifikacemi prihlaseneho uzivatele pomoci GET /notifications."""
-        service_method = 'get'
+        request_method = 'get'
         service_name = 'notifications'
-        service_url = dataprovider.get_api_url(self.builtin.get_variable_value('${API_NAME}'), service_name)
-        resp = send_request(self.session, service_method, service_url)
+        request_url = dataprovider.get_api_url(self.builtin.get_variable_value('${API_NAME}'), service_name)
+        resp = send_request(self.session, request_method, request_url)
         self.notif_dict = resp.json()
         return self.notif_dict
 
     def delete_notifications(self, name=None, notif_dict=None, cnt=None):
         """KW smaze 'cnt' notifikaci prihlaseneho uzivatele podle jmena 'name' v notifikaci. Notifikace se mazou pomoci
         volani PATCH /notifications/{notification_id}.
+
         :param name: jmeno uvedene v notifikaci
         :param notif_dict: python slovnik, ktery obsahuje vsechny notifikace prihlaseneho uzivatele
         :param cnt: pocet notifikaci ke smazani
@@ -33,7 +34,7 @@ class Notifications:
         cnt = cnt if cnt is not None else dataprovider.get_var(self.builtin.get_variable_value('${DEL_NOTIF}'), 'cnt')
         notif_dict = self._get_notif_dict(notif_dict)
         # zjisti, jestli je slovnik s notifikacemi prazdny a pokud ano test zastavi, protoze neni co mazat
-        assert self._is_notif_dict_empty(name, notif_dict), 'Nejsou testovaci data, test konci.'
+        assert self._is_notif_dict_empty(name, notif_dict), f'err: nejsou testovaci data pro: {name}, test konci.'
         # ulozi pocet notifikaci s vybranym jmenem pred mazanim notifikaci
         notif_cnt_before = self._get_notif_cnt_by_name(name, notif_dict)
         # vytvori novy slovnik pouze s notifikacemi se jmenem 'name'
@@ -66,7 +67,7 @@ class Notifications:
             if name in notif_dict['results'][i]['userFullName']:
                 notif_cnt += 1
         if notif_cnt == 0:
-            logging.warning(f'Uzivatel nema dalsi notifikace od: {name}')
+            logging.warning(f'del-notif: uzivatel nema dalsi notifikace od: {name}')
         return notif_cnt
 
     @staticmethod
@@ -84,10 +85,10 @@ class Notifications:
         je slovnik s notifikacemi, ktery obsahuje pouze notifikace s jedinym jmenem. Notifikace se mazou po jedne pomoci
         volani PATCH /notifications/{notification_id}.
         """
-        service_method = 'patch'
+        request_method = 'patch'
         service_name = 'notification_id'
-        service_url = dataprovider.get_api_url(self.builtin.get_variable_value('${API_NAME}'), service_name)
-        service_body = dataprovider.get_var(self.builtin.get_variable_value('${DEL_NOTIF}'), 'body')
+        request_url = dataprovider.get_api_url(self.builtin.get_variable_value('${API_NAME}'), service_name)
+        request_body = dataprovider.get_var(self.builtin.get_variable_value('${DEL_NOTIF}'), 'body')
         notif_dict = notif_dict_single
         notif_dict_len = len(notif_dict['results'])
         del_notif_counter = 0
@@ -98,25 +99,26 @@ class Notifications:
         # mazani notifikaci podle 'id' notifikace
         for i in range(notif_dict_len):
             if name in notif_dict['results'][i]['userFullName']:
-                service_body['id'] = notif_dict['results'][i]['id']
+                request_body['id'] = notif_dict['results'][i]['id']
                 # send-request: pro kazdou notifikaci se posle jeden request PATCH /notifications/{notification_id}
-                send_request(self.session, service_method, service_url.format(notif_dict['results'][i]['id']),
-                             service_body)
+                send_request(self.session, request_method, request_url.format(notif_dict['results'][i]['id']),
+                             request_body)
                 del_notif_counter += 1
-                logging.warning(f"maze se notifikace se jmenem: {notif_dict['results'][i]['userFullName']}")
-                logging.warning(f"maze se id-cko notifikace: {notif_dict['results'][i]['id']}")
-        logging.warning(f'smazano: {del_notif_counter} notifikaci od: {name}')
+                logging.warning(f"del-notif: maze se notifikace se jmenem: {notif_dict['results'][i]['userFullName']}")
+                logging.warning(f"del-notif: maze se id-cko notifikace: {notif_dict['results'][i]['id']}")
+        logging.warning(f'del-notif: smazano: {del_notif_counter} notifikaci od: {name}')
 
     @staticmethod
     def _check_notif(notif_cnt_before, notif_cnt_after, name, cnt):
         """Metoda overi, jestli doslo ke smazani vsech notifikaci pro vybrane jmeno a v pozadovanem poctu."""
         if cnt == 'all':
-            assert notif_cnt_after == 0, f'Notifikace uzivatele {name} se nesmazaly'
+            assert notif_cnt_after == 0, f'err: notifikace uzivatele {name} se nesmazaly'
         else:
             if notif_cnt_before - cnt >= 0:
-                assert notif_cnt_after == (notif_cnt_before - cnt), f'pred: {notif_cnt_before}, po: {notif_cnt_after}'
+                assert notif_cnt_after == (notif_cnt_before - cnt), f'err: #notif-pred: {notif_cnt_before}, ' \
+                                                                    f'#notif-po: {notif_cnt_after}'
             else:
-                assert notif_cnt_after == 0, f'pred: {notif_cnt_before}, po: {notif_cnt_after}'
+                assert notif_cnt_after == 0, f'err: #notif-pred: {notif_cnt_before}, #notif-po: {notif_cnt_after}'
 
     def _get_notif_dict(self, notif_dict):
         """Metoda vraci python slovnik s notifikacemi uzivatele. Nejdrive se snazi vratit slovnik predany jako argument
@@ -124,12 +126,12 @@ class Notifications:
         'get notification list'. Pokud ani tento neexistuje, vygeneruje novy slovnik s aktualnim poctem notifikaci.
         """
         if notif_dict:
-            logging.warning(f"slovnik 'notif_dict' predan jako argument v KW 'delete ...'")
+            logging.warning(f"del-notif: slovnik 'notif_dict' predan jako argument v KW 'delete ...'")
             self.notif_dict = notif_dict
             return notif_dict
         elif self.notif_dict:
-            logging.warning(f"slovnik 'notif_dict' ulozen v ramci KW 'get notifications'")
+            logging.warning(f"del-notif: slovnik 'notif_dict' ulozen v ramci KW 'get notifications'")
             return self.notif_dict
         else:
-            logging.warning(f"generuju novy slovnik: 'notif_dict'")
+            logging.warning(f"del-notif: generuju novy slovnik: 'notif_dict'")
             return self.get_notification_list()

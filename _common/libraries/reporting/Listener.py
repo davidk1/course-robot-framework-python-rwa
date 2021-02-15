@@ -26,19 +26,21 @@ class Listener:
         """Robot vola metodu end_suite vzdy po ukonceni vsech testu v testovaci sade. Metoda nastavi konfiguraci pro
         reportingovy nastroj podle typu testu (api / ui) a potom ho zavola.
         """
-        cfg = reporting.config
-        # do konfigurace reportovaciho nastroje nastavi jmena a jim odpovidajici stavy testu (PASS / FAIL)
+        cfg_reporting_tool = self._prepare_cfg_for_reporting_tool()
+        reporting.report_results(cfg_reporting_tool)
+
+    def _prepare_cfg_for_reporting_tool(self):
+        """Jakmile dobehne posledni test v testovaci sade, metoda pripravi konfiguraci pro zobrazeni vysledku v
+        reportovacim nastroji.
+        """
+        cfg = reporting.config    # nacte vychozi konfiguraci reportovaciho nastroje
+        # v konfiguraci upravi jmena testu a jejich stavy (PASS / FAIL)
         for i in range(len(self.test_names)):
-            n = cfg['data']['labels']
-            n.append(self.test_names[i])
+            cfg['data']['labels'].append(self.test_names[i])
             if self.test_statuses[i] == 'FAIL':
-                f1 = cfg['data']['datasets'][0]['data']
-                f1.append(1)
-                f2 = cfg['data']['datasets'][1]['data']
-                f2.append(0)
+                cfg['data']['datasets'][0]['data'].append(1)
+                cfg['data']['datasets'][1]['data'].append(0)
             else:
-                p1 = cfg['data']['datasets'][1]['data']
-                p1.append(1)
-                p2 = cfg['data']['datasets'][0]['data']
-                p2.append(0)
-        reporting.report_results(cfg)
+                cfg['data']['datasets'][1]['data'].append(1)
+                cfg['data']['datasets'][0]['data'].append(0)
+        return cfg

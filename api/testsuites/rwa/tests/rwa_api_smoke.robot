@@ -1,7 +1,8 @@
 *** Settings ***
-Documentation    Testovaci sada obsahuje vybrane testy pro overeni chovani rwa api. Pro prihlaseni do api se pouziva
+Documentation    Testovaci sada obsahuje vybrane testy pro validaci rwa api. Pro prihlaseni do api se pouziva
 ...              uzivatel: Katharina_Bernier.
-Library    ../../../../_common/libraries/SetProjectRoot.py
+
+Library    ../../../../_common/SetProjectRoot.py
 Library    ../../../keywords/rwa/SuiteSetup.py
 Library    ../../../keywords/rwa/Auth.py
 Library    ../../../keywords/rwa/BankAccounts.py
@@ -23,10 +24,10 @@ ${SEND_MONEY}             api.testsuites.rwa.testdata.send_money
 
 
 *** Test Cases ***
-#Check bank account
-#    [Documentation]    Test overi spravnost detailu vychoziho bankovniho uctu prihlaseneho uzivatele.
-#    [Tags]             check_bank_acc    smoke
-#    check bank account
+Get bank account
+    [Documentation]    Test overi spravnost detailu vychoziho bankovniho uctu prihlaseneho uzivatele.
+    [Tags]             check_bank_acc    smoke
+    get bank account
 
 Get notifications
     [Documentation]    Test vrati seznam vsech notifikaci prihlaseneho uzivatele.
@@ -36,11 +37,11 @@ Get notifications
 Delete n notifications
     [Documentation]    Test smaze n anebo vsechny notifikace prihlaseneho uzivatele podle vybraneho jmena v notifikaci.
     [Tags]             del_notif    smoke
-    #get notification list
-    delete notifications    name=Edgar    cnt=${1}    #cnt=all
+    get notification list
+    delete notifications    name=Edgar     cnt=${1}    #cnt=all
 
-#Send money
-#    [Documentation]    Test odesle platbu vybranemu prijemci ze seznamu pratel.
-#    [Tags]             send_money    smoke
-#    get receiver id
-#    #send money    name=Tavares_Barrows    amount=${1}
+Send money
+    [Documentation]    Test odesle platbu vybranemu prijemci ze seznamu pratel.
+    [Tags]             send_money    smoke
+    get receiver id    name=Tavares_Barrows
+    send money    name=Tavares_Barrows    amount=${1}

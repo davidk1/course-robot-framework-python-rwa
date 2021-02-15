@@ -46,9 +46,9 @@ def report_results(cfg):
         statickych reportu -> https://quickchart.io/
     """
     qc.config = cfg
-    chart_url = qc.get_url()    # odesle pozadavek na https://quickchart.io/ a vygeneruje staticky report
+    chart_url = qc.get_url()    # vygeneruje url statickeho reportu
     chart_qr_code = f'https://quickchart.io/qr?text={chart_url}&size=250'
     # URL reportu
-    logging.warning(f'URL reportu: {chart_url}')
+    logging.warning(f'reporting-url: {chart_url}')
     # QR kod reportu
-    logging.warning(f'QR kod reportu: {chart_qr_code}')
+    logging.warning(f'reporting-qr-kod: {chart_qr_code}')

@@ -4,6 +4,7 @@ import requests
 
 def send_request(session, method, url, body=None, **kwargs):
     """Implementace vybranych http metod pro volani sluzeb rest/soap.
+
     :param session: unikatni session-id pro vsechny volani v ramci test suite
     :param method: http metoda (get / post / patch)
     :param url: url konkretniho api
@@ -27,7 +28,7 @@ def send_request(session, method, url, body=None, **kwargs):
         if method == 'patch':
             resp = session.patch(url=url, headers=headers, json=body)
         resp.raise_for_status()
-        # logging.warning(f"resp-status-code: {service_url.split('//')[1][14:]} -> {resp.status_code}")
+        # logging.warning(f"resp-status-code: {request_url.split('//')[1][14:]} -> {resp.status_code}")
     except requests.ConnectionError as e:
         logging.warning(f'Connection error, viz vyjimka: {e.args}')
         raise e

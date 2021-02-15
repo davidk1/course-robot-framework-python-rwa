@@ -4,7 +4,7 @@ body = {
     "amount": 10,  # castka k odeslani v [$]
     "description": f'Penize od {receiver_name}',  # popis transakce
     "senderId": "",  # vyplni test nactenim suite variable ulozene v ramci loginu: ${USER_ID}
-    "receiverId": ""  # vyplni test pomoci instancni promenne receiver_id
+    "receiverId": ""  # vyplni test pomoci instancni promenne self.receiver_id
 }
 expected_response = {
     "transaction": {
