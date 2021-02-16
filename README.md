@@ -16,13 +16,13 @@ pip install -r requirements.txt
 ```
 
 ## Run tests
-ui 
+ui: 
 ```bash
 from cmd line cd to: ui/testsuites/rwa/tests/
 run: python -m robot rwa_smoke.robot
 ```
 
-rest services
+rest services:
 ```bash
 from cmd line cd to: api/testsuites/rwa/tests/
 run: python -m robot rwa_api_smoke.robot
