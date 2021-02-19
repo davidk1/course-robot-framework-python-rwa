@@ -1,81 +1,144 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 3.2.2 (Python 3.8.6 on darwin)" generated="20210217 21:51:58.564" rpa="false">
-<suite id="s1" name="Rwa Api Smoke" source="/Users/davidkrist/PycharmProjects/course-robot-framework-python-rwa/api/testsuites/rwa/tests/rwa_api_smoke.robot">
+<robot generator="Robot 3.2.2 (Python 3.7.3 on win32)" generated="20210218 18:55:51.175" rpa="false">
+<suite id="s1" name="Rwa Api Smoke" source="C:\Users\kristd\PycharmProjects\train\api\testsuites\rwa\tests\rwa_api_smoke.robot">
 <kw name="Setup" library="SuiteSetup" type="setup">
 <doc>KW prihlasi uzivatele do aplikace rwa.</doc>
-<msg timestamp="20210217 21:51:58.763" level="WARN">Connection error, viz vyjimka: (MaxRetryError("HTTPConnectionPool(host='localhost', port=3001): Max retries exceeded with url: /login (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x106b3d640&gt;: Failed to establish a new connection: [Errno 61] Connection refused'))"),)</msg>
-<msg timestamp="20210217 21:51:58.767" level="FAIL">ConnectionError: HTTPConnectionPool(host='localhost', port=3001): Max retries exceeded with url: /login (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x106b3d640&gt;: Failed to establish a new connection: [Errno 61] Connection refused'))</msg>
-<status status="FAIL" starttime="20210217 21:51:58.749" endtime="20210217 21:51:58.768"></status>
+<msg timestamp="20210218 18:55:52.272" level="INFO">${USER_ID} = t45AiwidW</msg>
+<msg timestamp="20210218 18:55:52.274" level="INFO">${USER_BALANCE} = 167937</msg>
+<msg timestamp="20210218 18:55:52.277" level="WARN">login: doslo k uspesnemu prihlaseni uzivatele: Katharina_Bernier</msg>
+<status status="PASS" starttime="20210218 18:55:52.081" endtime="20210218 18:55:52.278"></status>
 </kw>
 <test id="s1-t1" name="Get bank account">
+<kw name="Get Bank Account" library="BankAccounts">
+<doc>KW overi detaily vychoziho bankovniho uctu prihlaseneho uzivatele pomoci GET /bankAccounts.</doc>
+<msg timestamp="20210218 18:55:52.293" level="WARN">get-bank-acc: detaily uctu z api jsou shodne s ocekavanymi vysledky</msg>
+<status status="PASS" starttime="20210218 18:55:52.280" endtime="20210218 18:55:52.313"></status>
+</kw>
 <doc>Test overi spravnost detailu vychoziho bankovniho uctu prihlaseneho uzivatele.</doc>
 <tags>
 <tag>check_bank_acc</tag>
 <tag>smoke</tag>
 </tags>
-<status status="FAIL" starttime="20210217 21:51:58.769" endtime="20210217 21:51:58.772" critical="yes">Parent suite setup failed:
-ConnectionError: HTTPConnectionPool(host='localhost', port=3001): Max retries exceeded with url: /login (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x106b3d640&gt;: Failed to establish a new connection: [Errno 61] Connection refused'))</status>
+<status status="PASS" starttime="20210218 18:55:52.278" endtime="20210218 18:55:52.316" critical="yes"></status>
 </test>
 <test id="s1-t2" name="Get notifications">
+<kw name="Get Notification List" library="Notifications">
+<doc>KW vraci python slovnik se vsemi notifikacemi prihlaseneho uzivatele pomoci GET /notifications.</doc>
+<status status="PASS" starttime="20210218 18:55:52.326" endtime="20210218 18:55:52.345"></status>
+</kw>
 <doc>Test vrati seznam vsech notifikaci prihlaseneho uzivatele.</doc>
 <tags>
 <tag>get_notif</tag>
 <tag>smoke</tag>
 </tags>
-<status status="FAIL" starttime="20210217 21:51:58.773" endtime="20210217 21:51:58.774" critical="yes">Parent suite setup failed:
-ConnectionError: HTTPConnectionPool(host='localhost', port=3001): Max retries exceeded with url: /login (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x106b3d640&gt;: Failed to establish a new connection: [Errno 61] Connection refused'))</status>
+<status status="PASS" starttime="20210218 18:55:52.323" endtime="20210218 18:55:52.346" critical="yes"></status>
 </test>
 <test id="s1-t3" name="Delete n notifications">
+<kw name="Get Notification List" library="Notifications">
+<doc>KW vraci python slovnik se vsemi notifikacemi prihlaseneho uzivatele pomoci GET /notifications.</doc>
+<status status="PASS" starttime="20210218 18:55:52.352" endtime="20210218 18:55:52.374"></status>
+</kw>
+<kw name="Delete Notifications" library="Notifications">
+<doc>KW smaze 'cnt' notifikaci prihlaseneho uzivatele podle jmena 'name' v notifikaci. Notifikace se mazou pomoci
+volani PATCH /notifications/{notification_id}.</doc>
+<arguments>
+<arg>name=Edgar</arg>
+<arg>cnt=${1}</arg>
+</arguments>
+<msg timestamp="20210218 18:55:52.376" level="WARN">del-notif: slovnik 'notif_dict' ulozen v ramci KW 'get notifications'</msg>
+<msg timestamp="20210218 18:55:52.409" level="WARN">del-notif: maze se notifikace se jmenem: Edgar Johns</msg>
+<msg timestamp="20210218 18:55:52.413" level="WARN">del-notif: maze se id-cko notifikace: Bf5th29A1FHa</msg>
+<msg timestamp="20210218 18:55:52.417" level="WARN">del-notif: smazano: 1 notifikaci od: Edgar</msg>
+<status status="PASS" starttime="20210218 18:55:52.375" endtime="20210218 18:55:52.443"></status>
+</kw>
 <doc>Test smaze n anebo vsechny notifikace prihlaseneho uzivatele podle vybraneho jmena v notifikaci.</doc>
 <tags>
 <tag>del_notif</tag>
 <tag>smoke</tag>
 </tags>
-<status status="FAIL" starttime="20210217 21:51:58.774" endtime="20210217 21:51:58.777" critical="yes">Parent suite setup failed:
-ConnectionError: HTTPConnectionPool(host='localhost', port=3001): Max retries exceeded with url: /login (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x106b3d640&gt;: Failed to establish a new connection: [Errno 61] Connection refused'))</status>
+<status status="PASS" starttime="20210218 18:55:52.351" endtime="20210218 18:55:52.443" critical="yes"></status>
 </test>
 <test id="s1-t4" name="Send money">
+<kw name="Get Receiver Id" library="Transactions">
+<doc>KW ziska z api id-cko prijemce, jemuz se odeslou penize a ulozi ho jako 'receiver_id' pro pouziti v jinych
+KW. Pokud se KW nepreda argument 'name', potom se 'receiver_id' vygeneruje na zaklade 'name' z testovacich
+dat. 'receiver_id' se ziska parsovanim odpovedi GET /users.</doc>
+<arguments>
+<arg>name=Tavares_Barrows</arg>
+</arguments>
+<msg timestamp="20210218 18:55:52.475" level="WARN">send-money: jmeno prijemce ma receiver-id: qywYp6hS0U</msg>
+<status status="PASS" starttime="20210218 18:55:52.452" endtime="20210218 18:55:52.487"></status>
+</kw>
+<kw name="Send Money" library="Transactions">
+<doc>KW odesle platbu ve vysi 'amount' dolaru prijemci 'name' zavolanim POST /transactions. Odpoved z api
+validuje vuci ocekavanym vysledkum v testovacich datech.</doc>
+<arguments>
+<arg>name=Tavares_Barrows</arg>
+<arg>amount=${1}</arg>
+</arguments>
+<msg timestamp="20210218 18:55:52.504" level="WARN">send-money: jmeno prijemce ma receiver-id: qywYp6hS0U</msg>
+<msg timestamp="20210218 18:55:52.603" level="WARN">send-money: request: {'transactionType': 'payment', 'amount': 1, 'description': 'Penize od Jessyca.Kuhic', 'senderId': 't45AiwidW', 'receiverId': 'qywYp6hS0U'}</msg>
+<msg timestamp="20210218 18:55:52.607" level="WARN">send-money: response: {'transaction': {'id': 'blvU2hkLm', 'uuid': 'f6aad244-bd9a-4f5b-bb21-6655fdea0456', 'amount': 100, 'description': 'Penize od Jessyca.Kuhic', 'receiverId': 'qywYp6hS0U', 'senderId': 't45AiwidW', 'privacyLevel': 'public', 'status': 'complete', 'createdAt': '2021-02-18T17:55:52.562Z', 'modifiedAt': '2021-02-18T17:55:52.562Z'}}</msg>
+<msg timestamp="20210218 18:55:52.611" level="WARN">send-money: sender-id: t45AiwidW</msg>
+<msg timestamp="20210218 18:55:52.622" level="WARN">send-money: receiver-id: qywYp6hS0U</msg>
+<msg timestamp="20210218 18:55:52.641" level="WARN">send-money: expected_response: {'transaction': {'id': '', 'uuid': '', 'amount': 100, 'description': 'Penize od Jessyca.Kuhic', 'receiverId': 'qywYp6hS0U', 'senderId': 't45AiwidW', 'privacyLevel': 'public', 'status': 'complete', 'createdAt': '', 'modifiedAt': ''}}</msg>
+<msg timestamp="20210218 18:55:52.644" level="WARN">send-money: actual_response: {'transaction': {'id': 'blvU2hkLm', 'uuid': 'f6aad244-bd9a-4f5b-bb21-6655fdea0456', 'amount': 100, 'description': 'Penize od Jessyca.Kuhic', 'receiverId': 'qywYp6hS0U', 'senderId': 't45AiwidW', 'privacyLevel': 'public', 'status': 'complete', 'createdAt': '2021-02-18T17:55:52.562Z', 'modifiedAt': '2021-02-18T17:55:52.562Z'}}</msg>
+<msg timestamp="20210218 18:55:52.659" level="WARN">send-money: check-pred-platbou: $1,679.37</msg>
+<msg timestamp="20210218 18:55:52.665" level="INFO">${USER_BALANCE} = 167837</msg>
+<msg timestamp="20210218 18:55:52.666" level="WARN">send-money: check-po-platbe: $1,678.37</msg>
+<msg timestamp="20210218 18:55:52.678" level="WARN">send-money: doslo k uspesnemu odeslani 1 $ na ucet prijemce</msg>
+<status status="PASS" starttime="20210218 18:55:52.490" endtime="20210218 18:55:52.688"></status>
+</kw>
 <doc>Test odesle platbu vybranemu prijemci ze seznamu pratel.</doc>
 <tags>
 <tag>send_money</tag>
 <tag>smoke</tag>
 </tags>
-<status status="FAIL" starttime="20210217 21:51:58.779" endtime="20210217 21:51:58.780" critical="yes">Parent suite setup failed:
-ConnectionError: HTTPConnectionPool(host='localhost', port=3001): Max retries exceeded with url: /login (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x106b3d640&gt;: Failed to establish a new connection: [Errno 61] Connection refused'))</status>
+<status status="PASS" starttime="20210218 18:55:52.446" endtime="20210218 18:55:52.689" critical="yes"></status>
 </test>
 <kw name="Teardown" library="SuiteTeardown" type="teardown">
 <doc>KW odhlasi prihlaseneho uzivatele z aplikace rwa a ukonci aktivni session.</doc>
-<msg timestamp="20210217 21:51:58.786" level="WARN">Connection error, viz vyjimka: (MaxRetryError("HTTPConnectionPool(host='localhost', port=3001): Max retries exceeded with url: /logout (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x106c19ac0&gt;: Failed to establish a new connection: [Errno 61] Connection refused'))"),)</msg>
-<msg timestamp="20210217 21:51:58.790" level="FAIL">ConnectionError: HTTPConnectionPool(host='localhost', port=3001): Max retries exceeded with url: /logout (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x106c19ac0&gt;: Failed to establish a new connection: [Errno 61] Connection refused'))</msg>
-<status status="FAIL" starttime="20210217 21:51:58.781" endtime="20210217 21:51:58.790">ConnectionError: HTTPConnectionPool(host='localhost', port=3001): Max retries exceeded with url: /logout (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x106c19ac0&gt;: Failed to establish a new connection: [Errno 61] Connection refused'))</status>
+<msg timestamp="20210218 18:55:52.725" level="WARN">logout: doslo k uspesnemu odhlaseni uzivatele</msg>
+<status status="PASS" starttime="20210218 18:55:52.697" endtime="20210218 18:55:52.727"></status>
 </kw>
 <doc>Testovaci sada obsahuje vybrane testy pro validaci rwa api. Pro prihlaseni do api se pouziva
 uzivatel: Katharina_Bernier.</doc>
-<status status="FAIL" starttime="20210217 21:51:58.566" endtime="20210217 21:51:58.791">Suite setup failed:
-ConnectionError: HTTPConnectionPool(host='localhost', port=3001): Max retries exceeded with url: /login (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x106b3d640&gt;: Failed to establish a new connection: [Errno 61] Connection refused'))
-
-Also suite teardown failed:
-ConnectionError: HTTPConnectionPool(host='localhost', port=3001): Max retries exceeded with url: /logout (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x106c19ac0&gt;: Failed to establish a new connection: [Errno 61] Connection refused'))</status>
+<status status="PASS" starttime="20210218 18:55:51.183" endtime="20210218 18:55:52.727"></status>
 </suite>
 <statistics>
 <total>
-<stat pass="0" fail="4">Critical Tests</stat>
-<stat pass="0" fail="4">All Tests</stat>
+<stat pass="4" fail="0">Critical Tests</stat>
+<stat pass="4" fail="0">All Tests</stat>
 </total>
 <tag>
-<stat pass="0" fail="1">check_bank_acc</stat>
-<stat pass="0" fail="1">del_notif</stat>
-<stat pass="0" fail="1">get_notif</stat>
-<stat pass="0" fail="1">send_money</stat>
-<stat pass="0" fail="4">smoke</stat>
+<stat pass="1" fail="0">check_bank_acc</stat>
+<stat pass="1" fail="0">del_notif</stat>
+<stat pass="1" fail="0">get_notif</stat>
+<stat pass="1" fail="0">send_money</stat>
+<stat pass="4" fail="0">smoke</stat>
 </tag>
 <suite>
-<stat pass="0" fail="4" id="s1" name="Rwa Api Smoke">Rwa Api Smoke</stat>
+<stat pass="4" fail="0" id="s1" name="Rwa Api Smoke">Rwa Api Smoke</stat>
 </suite>
 </statistics>
 <errors>
-<msg timestamp="20210217 21:51:58.600" level="WARN">Imported library '/Users/davidkrist/PycharmProjects/course-robot-framework-python-rwa/_common' contains no keywords.</msg>
-<msg timestamp="20210217 21:51:58.763" level="WARN">Connection error, viz vyjimka: (MaxRetryError("HTTPConnectionPool(host='localhost', port=3001): Max retries exceeded with url: /login (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x106b3d640&gt;: Failed to establish a new connection: [Errno 61] Connection refused'))"),)</msg>
-<msg timestamp="20210217 21:51:58.786" level="WARN">Connection error, viz vyjimka: (MaxRetryError("HTTPConnectionPool(host='localhost', port=3001): Max retries exceeded with url: /logout (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x106c19ac0&gt;: Failed to establish a new connection: [Errno 61] Connection refused'))"),)</msg>
+<msg timestamp="20210218 18:55:52.277" level="WARN">login: doslo k uspesnemu prihlaseni uzivatele: Katharina_Bernier</msg>
+<msg timestamp="20210218 18:55:52.293" level="WARN">get-bank-acc: detaily uctu z api jsou shodne s ocekavanymi vysledky</msg>
+<msg timestamp="20210218 18:55:52.376" level="WARN">del-notif: slovnik 'notif_dict' ulozen v ramci KW 'get notifications'</msg>
+<msg timestamp="20210218 18:55:52.409" level="WARN">del-notif: maze se notifikace se jmenem: Edgar Johns</msg>
+<msg timestamp="20210218 18:55:52.413" level="WARN">del-notif: maze se id-cko notifikace: Bf5th29A1FHa</msg>
+<msg timestamp="20210218 18:55:52.417" level="WARN">del-notif: smazano: 1 notifikaci od: Edgar</msg>
+<msg timestamp="20210218 18:55:52.475" level="WARN">send-money: jmeno prijemce ma receiver-id: qywYp6hS0U</msg>
+<msg timestamp="20210218 18:55:52.504" level="WARN">send-money: jmeno prijemce ma receiver-id: qywYp6hS0U</msg>
+<msg timestamp="20210218 18:55:52.603" level="WARN">send-money: request: {'transactionType': 'payment', 'amount': 1, 'description': 'Penize od Jessyca.Kuhic', 'senderId': 't45AiwidW', 'receiverId': 'qywYp6hS0U'}</msg>
+<msg timestamp="20210218 18:55:52.607" level="WARN">send-money: response: {'transaction': {'id': 'blvU2hkLm', 'uuid': 'f6aad244-bd9a-4f5b-bb21-6655fdea0456', 'amount': 100, 'description': 'Penize od Jessyca.Kuhic', 'receiverId': 'qywYp6hS0U', 'senderId': 't45AiwidW', 'privacyLevel': 'public', 'status': 'complete', 'createdAt': '2021-02-18T17:55:52.562Z', 'modifiedAt': '2021-02-18T17:55:52.562Z'}}</msg>
+<msg timestamp="20210218 18:55:52.611" level="WARN">send-money: sender-id: t45AiwidW</msg>
+<msg timestamp="20210218 18:55:52.622" level="WARN">send-money: receiver-id: qywYp6hS0U</msg>
+<msg timestamp="20210218 18:55:52.641" level="WARN">send-money: expected_response: {'transaction': {'id': '', 'uuid': '', 'amount': 100, 'description': 'Penize od Jessyca.Kuhic', 'receiverId': 'qywYp6hS0U', 'senderId': 't45AiwidW', 'privacyLevel': 'public', 'status': 'complete', 'createdAt': '', 'modifiedAt': ''}}</msg>
+<msg timestamp="20210218 18:55:52.644" level="WARN">send-money: actual_response: {'transaction': {'id': 'blvU2hkLm', 'uuid': 'f6aad244-bd9a-4f5b-bb21-6655fdea0456', 'amount': 100, 'description': 'Penize od Jessyca.Kuhic', 'receiverId': 'qywYp6hS0U', 'senderId': 't45AiwidW', 'privacyLevel': 'public', 'status': 'complete', 'createdAt': '2021-02-18T17:55:52.562Z', 'modifiedAt': '2021-02-18T17:55:52.562Z'}}</msg>
+<msg timestamp="20210218 18:55:52.659" level="WARN">send-money: check-pred-platbou: $1,679.37</msg>
+<msg timestamp="20210218 18:55:52.666" level="WARN">send-money: check-po-platbe: $1,678.37</msg>
+<msg timestamp="20210218 18:55:52.678" level="WARN">send-money: doslo k uspesnemu odeslani 1 $ na ucet prijemce</msg>
+<msg timestamp="20210218 18:55:52.725" level="WARN">logout: doslo k uspesnemu odhlaseni uzivatele</msg>
 </errors>
 </robot>

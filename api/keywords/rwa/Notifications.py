@@ -26,8 +26,8 @@ class Notifications:
         volani PATCH /notifications/{notification_id}.
 
         :param name: jmeno uvedene v notifikaci
-        :param notif_dict: python slovnik, ktery obsahuje vsechny notifikace prihlaseneho uzivatele
-        :param cnt: pocet notifikaci ke smazani
+        :param notif_dict: python slovnik s notifikacemi prihlaseneho uzivatele
+        :param cnt: pocet notifikaci ke smazani [pocet(int) / 'all'(string)]
         """
         name = name if name is not None else dataprovider.get_var(self.builtin.get_variable_value('${DEL_NOTIF}'),
                                                                   'name')

@@ -15,7 +15,7 @@ expected_response = {
         "password": "$2a$10$5PXHGtcsckWtAprT5/JmluhR13f16BL8SIGhvAKNP.Dhxkt69FfzW",
         "email": "Norene39@yahoo.com",
         "phoneNumber": "625-316-9882",
-        "avatar": "https://avatars.dicebear.com/api/human/t45AiwidW.svg",
+        "avatar": "https://avatars.dicebear.com/4.4/api/human/t45AiwidW.svg",
         "defaultPrivacyLevel": "public",
         "balance": 168137,
         "createdAt": "2019-08-27T23:47:05.637Z",

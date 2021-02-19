@@ -26,7 +26,7 @@ class Auth:
         self.builtin.set_suite_variable('${USER_BALANCE}', resp_json['user']['balance'])
         # check: overi odpoved z api vuci ocekavanym datum
         expected_response = dataprovider.get_var(self.builtin.get_variable_value('${LOGIN}'), 'expected_response')
-        diff = DeepDiff(resp_json, expected_response, exclude_paths={"root['user']['balance']"})
+        diff = DeepDiff(expected_response, resp_json, exclude_paths={"root['user']['balance']"})
         assert diff == {}, f'err: z api se nevraci validni data pro /login: {diff}'
         logging.warning(f"login: doslo k uspesnemu prihlaseni uzivatele: {request_body['username']}")
 

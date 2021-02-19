@@ -2,7 +2,7 @@
 Documentation    Testovaci sada obsahuje vybrane testy pro validaci rwa api. Pro prihlaseni do api se pouziva
 ...              uzivatel: Katharina_Bernier.
 
-Library    ../../../../_common/SetProjectRoot.py
+Library    ../../../../_common/
 Library    ../../../keywords/rwa/SuiteSetup.py
 Library    ../../../keywords/rwa/Auth.py
 Library    ../../../keywords/rwa/BankAccounts.py

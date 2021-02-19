@@ -1,7 +1,7 @@
 *** Settings ***
 Documentation
 # misto setup.resource importuju rovnou knihovnu, pokud by resource delal jen jednu vec
-Library    ../../../../_common/libraries/SetProjectRoot.py
+Library    ../../../../_common/
 #Resource    ../../../keywords/_common/setup.resource
 Resource    ../../../keywords/_common/browser.resource
 Resource    ../../../keywords/rwa/auth.resource

@@ -71,7 +71,7 @@ class Transactions:
         expected_resp['transaction']['description'] = request_body['description']
         logging.warning(f"send-money: expected_response: {expected_resp}")
         logging.warning(f"send-money: actual_response: {resp_json}")
-        diff = DeepDiff(resp_json, expected_resp, exclude_paths={"root['transaction']['id']",
+        diff = DeepDiff(expected_resp, resp_json, exclude_paths={"root['transaction']['id']",
                                                                  "root['transaction']['uuid']",
                                                                  "root['transaction']['createdAt']",
                                                                  "root['transaction']['modifiedAt']"})
