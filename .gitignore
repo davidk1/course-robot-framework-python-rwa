@@ -142,3 +142,4 @@ Thumbs.db
 # Robot-framework artefacts
 tests/*.html
 tests/*.xml
+.idea*
