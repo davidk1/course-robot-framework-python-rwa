@@ -1,42 +1,107 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 3.2.2 (Python 3.7.3 on win32)" generated="20210218 18:55:51.175" rpa="false">
+<robot generator="Robot 3.2.2 (Python 3.7.3 on win32)" generated="20210220 17:54:48.557" rpa="false">
 <suite id="s1" name="Rwa Api Smoke" source="C:\Users\kristd\PycharmProjects\train\api\testsuites\rwa\tests\rwa_api_smoke.robot">
 <kw name="Setup" library="SuiteSetup" type="setup">
 <doc>KW prihlasi uzivatele do aplikace rwa.</doc>
-<msg timestamp="20210218 18:55:52.272" level="INFO">${USER_ID} = t45AiwidW</msg>
-<msg timestamp="20210218 18:55:52.274" level="INFO">${USER_BALANCE} = 167937</msg>
-<msg timestamp="20210218 18:55:52.277" level="WARN">login: doslo k uspesnemu prihlaseni uzivatele: Katharina_Bernier</msg>
-<status status="PASS" starttime="20210218 18:55:52.081" endtime="20210218 18:55:52.278"></status>
+<msg timestamp="20210220 17:54:49.173" level="TRACE">Arguments: [  ]</msg>
+<msg timestamp="20210220 17:54:49.187" level="DEBUG">Starting new HTTP connection (1): localhost:3001</msg>
+<msg timestamp="20210220 17:54:49.283" level="DEBUG">http://localhost:3001 "POST /login HTTP/1.1" 200 470</msg>
+<msg timestamp="20210220 17:54:49.286" level="INFO">${USER_ID} = t45AiwidW</msg>
+<msg timestamp="20210220 17:54:49.287" level="INFO">${USER_BALANCE} = 167537</msg>
+<msg timestamp="20210220 17:54:49.289" level="WARN">login: doslo k uspesnemu prihlaseni uzivatele: Katharina_Bernier</msg>
+<msg timestamp="20210220 17:54:49.289" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20210220 17:54:49.172" endtime="20210220 17:54:49.289"></status>
 </kw>
 <test id="s1-t1" name="Get bank account">
 <kw name="Get Bank Account" library="BankAccounts">
 <doc>KW overi detaily vychoziho bankovniho uctu prihlaseneho uzivatele pomoci GET /bankAccounts.</doc>
-<msg timestamp="20210218 18:55:52.293" level="WARN">get-bank-acc: detaily uctu z api jsou shodne s ocekavanymi vysledky</msg>
-<status status="PASS" starttime="20210218 18:55:52.280" endtime="20210218 18:55:52.313"></status>
+<msg timestamp="20210220 17:54:49.290" level="TRACE">Arguments: [  ]</msg>
+<msg timestamp="20210220 17:54:49.293" level="DEBUG">http://localhost:3001 "GET /bankAccounts HTTP/1.1" 200 290</msg>
+<msg timestamp="20210220 17:54:49.298" level="WARN">get-bank-acc: detaily uctu z api jsou shodne s ocekavanymi vysledky</msg>
+<msg timestamp="20210220 17:54:49.300" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20210220 17:54:49.290" endtime="20210220 17:54:49.301"></status>
 </kw>
 <doc>Test overi spravnost detailu vychoziho bankovniho uctu prihlaseneho uzivatele.</doc>
 <tags>
 <tag>check_bank_acc</tag>
 <tag>smoke</tag>
 </tags>
-<status status="PASS" starttime="20210218 18:55:52.278" endtime="20210218 18:55:52.316" critical="yes"></status>
+<status status="PASS" starttime="20210220 17:54:49.289" endtime="20210220 17:54:49.301" critical="yes"></status>
 </test>
 <test id="s1-t2" name="Get notifications">
 <kw name="Get Notification List" library="Notifications">
 <doc>KW vraci python slovnik se vsemi notifikacemi prihlaseneho uzivatele pomoci GET /notifications.</doc>
-<status status="PASS" starttime="20210218 18:55:52.326" endtime="20210218 18:55:52.345"></status>
+<msg timestamp="20210220 17:54:49.302" level="TRACE">Arguments: [  ]</msg>
+<msg timestamp="20210220 17:54:49.308" level="DEBUG">http://localhost:3001 "GET /notifications HTTP/1.1" 200 818</msg>
+<msg timestamp="20210220 17:54:49.308" level="TRACE">Return: {'results': [{'createdAt': '2019-10-15T13:21:49.772Z',
+              'id': '9m-W-uI5fQUF',
+              'isRead': False,
+              'likeId': 'heOJ8kL74llw',
+              'modifiedAt': '2020-05-21T20:08:05.787Z',
+              'transactionId': 'PPrW38YZtQD',
+              'userFullName': 'Ibrahim Dickens',
+              'userId': 't45AiwidW',
+              'uuid': 'f4a10fbf-d12e-4a6d-b888-d86989b66687'},
+             {'createdAt': '2019-11-12T12:51:00.239Z',
+              'id': 'tk8jNBQURvQz',
+              'isRead': False,
+              'modifiedAt': '2020-05-21T18:26:16.366Z',
+              'status': 'received',
+              'transactionId': 'xAsSYDsiEGSj',
+              'userFullName': 'Kaylin Homenick',
+              'userId': 't45AiwidW',
+              'uuid': 'c4ece032-38e3-47e9-8284-fbfa6d96ef9a'},
+             {'createdAt': '2019-09-20T22:27:10.721Z',
+              'id': '95qRwfJnSORQ',
+              'isRead': False,
+              'modifiedAt': '2020-05-21T14:55:58.008Z',
+              'status': 'requested',
+              'transactionId': 'xAsSYDsiEGSj',
+              'userFullName': 'Kaylin Homenick',
+              'userId': 't45AiwidW',
+              'uuid': '0b5a0f25-c56b-4434-ba4d-21f133d8964f'}]}</msg>
+<status status="PASS" starttime="20210220 17:54:49.302" endtime="20210220 17:54:49.309"></status>
 </kw>
 <doc>Test vrati seznam vsech notifikaci prihlaseneho uzivatele.</doc>
 <tags>
 <tag>get_notif</tag>
 <tag>smoke</tag>
 </tags>
-<status status="PASS" starttime="20210218 18:55:52.323" endtime="20210218 18:55:52.346" critical="yes"></status>
+<status status="PASS" starttime="20210220 17:54:49.301" endtime="20210220 17:54:49.310" critical="yes"></status>
 </test>
 <test id="s1-t3" name="Delete n notifications">
 <kw name="Get Notification List" library="Notifications">
 <doc>KW vraci python slovnik se vsemi notifikacemi prihlaseneho uzivatele pomoci GET /notifications.</doc>
-<status status="PASS" starttime="20210218 18:55:52.352" endtime="20210218 18:55:52.374"></status>
+<msg timestamp="20210220 17:54:49.314" level="TRACE">Arguments: [  ]</msg>
+<msg timestamp="20210220 17:54:49.318" level="DEBUG">http://localhost:3001 "GET /notifications HTTP/1.1" 200 818</msg>
+<msg timestamp="20210220 17:54:49.319" level="TRACE">Return: {'results': [{'createdAt': '2019-10-15T13:21:49.772Z',
+              'id': '9m-W-uI5fQUF',
+              'isRead': False,
+              'likeId': 'heOJ8kL74llw',
+              'modifiedAt': '2020-05-21T20:08:05.787Z',
+              'transactionId': 'PPrW38YZtQD',
+              'userFullName': 'Ibrahim Dickens',
+              'userId': 't45AiwidW',
+              'uuid': 'f4a10fbf-d12e-4a6d-b888-d86989b66687'},
+             {'createdAt': '2019-11-12T12:51:00.239Z',
+              'id': 'tk8jNBQURvQz',
+              'isRead': False,
+              'modifiedAt': '2020-05-21T18:26:16.366Z',
+              'status': 'received',
+              'transactionId': 'xAsSYDsiEGSj',
+              'userFullName': 'Kaylin Homenick',
+              'userId': 't45AiwidW',
+              'uuid': 'c4ece032-38e3-47e9-8284-fbfa6d96ef9a'},
+             {'createdAt': '2019-09-20T22:27:10.721Z',
+              'id': '95qRwfJnSORQ',
+              'isRead': False,
+              'modifiedAt': '2020-05-21T14:55:58.008Z',
+              'status': 'requested',
+              'transactionId': 'xAsSYDsiEGSj',
+              'userFullName': 'Kaylin Homenick',
+              'userId': 't45AiwidW',
+              'uuid': '0b5a0f25-c56b-4434-ba4d-21f133d8964f'}]}</msg>
+<status status="PASS" starttime="20210220 17:54:49.314" endtime="20210220 17:54:49.320"></status>
 </kw>
 <kw name="Delete Notifications" library="Notifications">
 <doc>KW smaze 'cnt' notifikaci prihlaseneho uzivatele podle jmena 'name' v notifikaci. Notifikace se mazou pomoci
@@ -45,18 +110,21 @@ volani PATCH /notifications/{notification_id}.</doc>
 <arg>name=Edgar</arg>
 <arg>cnt=${1}</arg>
 </arguments>
-<msg timestamp="20210218 18:55:52.376" level="WARN">del-notif: slovnik 'notif_dict' ulozen v ramci KW 'get notifications'</msg>
-<msg timestamp="20210218 18:55:52.409" level="WARN">del-notif: maze se notifikace se jmenem: Edgar Johns</msg>
-<msg timestamp="20210218 18:55:52.413" level="WARN">del-notif: maze se id-cko notifikace: Bf5th29A1FHa</msg>
-<msg timestamp="20210218 18:55:52.417" level="WARN">del-notif: smazano: 1 notifikaci od: Edgar</msg>
-<status status="PASS" starttime="20210218 18:55:52.375" endtime="20210218 18:55:52.443"></status>
+<msg timestamp="20210220 17:54:49.324" level="TRACE">Arguments: [ name='Edgar' | cnt=1 ]</msg>
+<msg timestamp="20210220 17:54:49.325" level="WARN">del-notif: slovnik 'notif_dict' ulozen v ramci KW 'get notifications'</msg>
+<msg timestamp="20210220 17:54:49.325" level="WARN">del-notif: uzivatel nema zadne notifikace od: Edgar</msg>
+<msg timestamp="20210220 17:54:49.327" level="FAIL">err: nejsou testovaci data pro: Edgar, test konci.</msg>
+<msg timestamp="20210220 17:54:49.327" level="DEBUG">Traceback (most recent call last):
+  File "C:\Users\kristd\PycharmProjects\train\api\keywords\rwa\Notifications.py", line 37, in delete_notifications
+    assert self._is_notif_dict_empty(name, notif_dict), f'err: nejsou testovaci data pro: {name}, test konci.'</msg>
+<status status="FAIL" starttime="20210220 17:54:49.322" endtime="20210220 17:54:49.328"></status>
 </kw>
 <doc>Test smaze n anebo vsechny notifikace prihlaseneho uzivatele podle vybraneho jmena v notifikaci.</doc>
 <tags>
 <tag>del_notif</tag>
 <tag>smoke</tag>
 </tags>
-<status status="PASS" starttime="20210218 18:55:52.351" endtime="20210218 18:55:52.443" critical="yes"></status>
+<status status="FAIL" starttime="20210220 17:54:49.311" endtime="20210220 17:54:49.328" critical="yes">err: nejsou testovaci data pro: Edgar, test konci.</status>
 </test>
 <test id="s1-t4" name="Send money">
 <kw name="Get Receiver Id" library="Transactions">
@@ -66,8 +134,11 @@ dat. 'receiver_id' se ziska parsovanim odpovedi GET /users.</doc>
 <arguments>
 <arg>name=Tavares_Barrows</arg>
 </arguments>
-<msg timestamp="20210218 18:55:52.475" level="WARN">send-money: jmeno prijemce ma receiver-id: qywYp6hS0U</msg>
-<status status="PASS" starttime="20210218 18:55:52.452" endtime="20210218 18:55:52.487"></status>
+<msg timestamp="20210220 17:54:49.329" level="TRACE">Arguments: [ name='Tavares_Barrows' ]</msg>
+<msg timestamp="20210220 17:54:49.333" level="DEBUG">http://localhost:3001 "GET /users HTTP/1.1" 200 1871</msg>
+<msg timestamp="20210220 17:54:49.334" level="WARN">send-money: jmeno prijemce ma receiver-id: qywYp6hS0U</msg>
+<msg timestamp="20210220 17:54:49.334" level="TRACE">Return: 'qywYp6hS0U'</msg>
+<status status="PASS" starttime="20210220 17:54:49.329" endtime="20210220 17:54:49.334"></status>
 </kw>
 <kw name="Send Money" library="Transactions">
 <doc>KW odesle platbu ve vysi 'amount' dolaru prijemci 'name' zavolanim POST /transactions. Odpoved z api
@@ -76,69 +147,79 @@ validuje vuci ocekavanym vysledkum v testovacich datech.</doc>
 <arg>name=Tavares_Barrows</arg>
 <arg>amount=${1}</arg>
 </arguments>
-<msg timestamp="20210218 18:55:52.504" level="WARN">send-money: jmeno prijemce ma receiver-id: qywYp6hS0U</msg>
-<msg timestamp="20210218 18:55:52.603" level="WARN">send-money: request: {'transactionType': 'payment', 'amount': 1, 'description': 'Penize od Jessyca.Kuhic', 'senderId': 't45AiwidW', 'receiverId': 'qywYp6hS0U'}</msg>
-<msg timestamp="20210218 18:55:52.607" level="WARN">send-money: response: {'transaction': {'id': 'blvU2hkLm', 'uuid': 'f6aad244-bd9a-4f5b-bb21-6655fdea0456', 'amount': 100, 'description': 'Penize od Jessyca.Kuhic', 'receiverId': 'qywYp6hS0U', 'senderId': 't45AiwidW', 'privacyLevel': 'public', 'status': 'complete', 'createdAt': '2021-02-18T17:55:52.562Z', 'modifiedAt': '2021-02-18T17:55:52.562Z'}}</msg>
-<msg timestamp="20210218 18:55:52.611" level="WARN">send-money: sender-id: t45AiwidW</msg>
-<msg timestamp="20210218 18:55:52.622" level="WARN">send-money: receiver-id: qywYp6hS0U</msg>
-<msg timestamp="20210218 18:55:52.641" level="WARN">send-money: expected_response: {'transaction': {'id': '', 'uuid': '', 'amount': 100, 'description': 'Penize od Jessyca.Kuhic', 'receiverId': 'qywYp6hS0U', 'senderId': 't45AiwidW', 'privacyLevel': 'public', 'status': 'complete', 'createdAt': '', 'modifiedAt': ''}}</msg>
-<msg timestamp="20210218 18:55:52.644" level="WARN">send-money: actual_response: {'transaction': {'id': 'blvU2hkLm', 'uuid': 'f6aad244-bd9a-4f5b-bb21-6655fdea0456', 'amount': 100, 'description': 'Penize od Jessyca.Kuhic', 'receiverId': 'qywYp6hS0U', 'senderId': 't45AiwidW', 'privacyLevel': 'public', 'status': 'complete', 'createdAt': '2021-02-18T17:55:52.562Z', 'modifiedAt': '2021-02-18T17:55:52.562Z'}}</msg>
-<msg timestamp="20210218 18:55:52.659" level="WARN">send-money: check-pred-platbou: $1,679.37</msg>
-<msg timestamp="20210218 18:55:52.665" level="INFO">${USER_BALANCE} = 167837</msg>
-<msg timestamp="20210218 18:55:52.666" level="WARN">send-money: check-po-platbe: $1,678.37</msg>
-<msg timestamp="20210218 18:55:52.678" level="WARN">send-money: doslo k uspesnemu odeslani 1 $ na ucet prijemce</msg>
-<status status="PASS" starttime="20210218 18:55:52.490" endtime="20210218 18:55:52.688"></status>
+<msg timestamp="20210220 17:54:49.335" level="TRACE">Arguments: [ name='Tavares_Barrows' | amount=1 ]</msg>
+<msg timestamp="20210220 17:54:49.346" level="DEBUG">http://localhost:3001 "GET /users HTTP/1.1" 200 1871</msg>
+<msg timestamp="20210220 17:54:49.347" level="WARN">send-money: jmeno prijemce ma receiver-id: qywYp6hS0U</msg>
+<msg timestamp="20210220 17:54:49.418" level="DEBUG">http://localhost:3001 "POST /transactions HTTP/1.1" 200 305</msg>
+<msg timestamp="20210220 17:54:49.419" level="WARN">send-money: request: {'transactionType': 'payment', 'amount': 1, 'description': 'Penize od Jessyca.Kuhic', 'senderId': 't45AiwidW', 'receiverId': 'qywYp6hS0U'}</msg>
+<msg timestamp="20210220 17:54:49.419" level="WARN">send-money: response: {'transaction': {'id': 'LDj0HTiga', 'uuid': 'e5b3e1d2-0b4a-49e1-8614-61d4df7aaf0a', 'amount': 100, 'description': 'Penize od Jessyca.Kuhic', 'receiverId': 'qywYp6hS0U', 'senderId': 't45AiwidW', 'privacyLevel': 'public', 'status': 'complete', 'createdAt': '2021-02-20T16:54:49.363Z', 'modifiedAt': '2021-02-20T16:54:49.363Z'}}</msg>
+<msg timestamp="20210220 17:54:49.420" level="WARN">send-money: sender-id: t45AiwidW</msg>
+<msg timestamp="20210220 17:54:49.420" level="WARN">send-money: receiver-id: qywYp6hS0U</msg>
+<msg timestamp="20210220 17:54:49.421" level="WARN">send-money: expected_response: {'transaction': {'id': '', 'uuid': '', 'amount': 100, 'description': 'Penize od Jessyca.Kuhic', 'receiverId': 'qywYp6hS0U', 'senderId': 't45AiwidW', 'privacyLevel': 'public', 'status': 'complete', 'createdAt': '', 'modifiedAt': ''}}</msg>
+<msg timestamp="20210220 17:54:49.422" level="WARN">send-money: actual_response: {'transaction': {'id': 'LDj0HTiga', 'uuid': 'e5b3e1d2-0b4a-49e1-8614-61d4df7aaf0a', 'amount': 100, 'description': 'Penize od Jessyca.Kuhic', 'receiverId': 'qywYp6hS0U', 'senderId': 't45AiwidW', 'privacyLevel': 'public', 'status': 'complete', 'createdAt': '2021-02-20T16:54:49.363Z', 'modifiedAt': '2021-02-20T16:54:49.363Z'}}</msg>
+<msg timestamp="20210220 17:54:49.428" level="DEBUG">http://localhost:3001 "GET /checkAuth HTTP/1.1" 200 470</msg>
+<msg timestamp="20210220 17:54:49.430" level="WARN">send-money: check-pred-platbou: $1,675.37</msg>
+<msg timestamp="20210220 17:54:49.431" level="INFO">${USER_BALANCE} = 167437</msg>
+<msg timestamp="20210220 17:54:49.431" level="WARN">send-money: check-po-platbe: $1,674.37</msg>
+<msg timestamp="20210220 17:54:49.431" level="WARN">send-money: doslo k uspesnemu odeslani 1 $ na ucet prijemce</msg>
+<msg timestamp="20210220 17:54:49.431" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20210220 17:54:49.334" endtime="20210220 17:54:49.431"></status>
 </kw>
 <doc>Test odesle platbu vybranemu prijemci ze seznamu pratel.</doc>
 <tags>
 <tag>send_money</tag>
 <tag>smoke</tag>
 </tags>
-<status status="PASS" starttime="20210218 18:55:52.446" endtime="20210218 18:55:52.689" critical="yes"></status>
+<status status="PASS" starttime="20210220 17:54:49.328" endtime="20210220 17:54:49.432" critical="yes"></status>
 </test>
 <kw name="Teardown" library="SuiteTeardown" type="teardown">
 <doc>KW odhlasi prihlaseneho uzivatele z aplikace rwa a ukonci aktivni session.</doc>
-<msg timestamp="20210218 18:55:52.725" level="WARN">logout: doslo k uspesnemu odhlaseni uzivatele</msg>
-<status status="PASS" starttime="20210218 18:55:52.697" endtime="20210218 18:55:52.727"></status>
+<msg timestamp="20210220 17:54:49.436" level="TRACE">Arguments: [  ]</msg>
+<msg timestamp="20210220 17:54:49.442" level="DEBUG">http://localhost:3001 "POST /logout HTTP/1.1" 302 23</msg>
+<msg timestamp="20210220 17:54:49.449" level="WARN">logout: doslo k uspesnemu odhlaseni uzivatele</msg>
+<msg timestamp="20210220 17:54:49.450" level="TRACE">Return: None</msg>
+<status status="PASS" starttime="20210220 17:54:49.435" endtime="20210220 17:54:49.450"></status>
 </kw>
 <doc>Testovaci sada obsahuje vybrane testy pro validaci rwa api. Pro prihlaseni do api se pouziva
 uzivatel: Katharina_Bernier.</doc>
-<status status="PASS" starttime="20210218 18:55:51.183" endtime="20210218 18:55:52.727"></status>
+<status status="FAIL" starttime="20210220 17:54:48.579" endtime="20210220 17:54:49.450"></status>
 </suite>
 <statistics>
 <total>
-<stat pass="4" fail="0">Critical Tests</stat>
-<stat pass="4" fail="0">All Tests</stat>
+<stat pass="3" fail="1">Critical Tests</stat>
+<stat pass="3" fail="1">All Tests</stat>
 </total>
 <tag>
 <stat pass="1" fail="0">check_bank_acc</stat>
-<stat pass="1" fail="0">del_notif</stat>
+<stat pass="0" fail="1">del_notif</stat>
 <stat pass="1" fail="0">get_notif</stat>
 <stat pass="1" fail="0">send_money</stat>
-<stat pass="4" fail="0">smoke</stat>
+<stat pass="3" fail="1">smoke</stat>
 </tag>
 <suite>
-<stat pass="4" fail="0" id="s1" name="Rwa Api Smoke">Rwa Api Smoke</stat>
+<stat pass="3" fail="1" id="s1" name="Rwa Api Smoke">Rwa Api Smoke</stat>
 </suite>
 </statistics>
 <errors>
-<msg timestamp="20210218 18:55:52.277" level="WARN">login: doslo k uspesnemu prihlaseni uzivatele: Katharina_Bernier</msg>
-<msg timestamp="20210218 18:55:52.293" level="WARN">get-bank-acc: detaily uctu z api jsou shodne s ocekavanymi vysledky</msg>
-<msg timestamp="20210218 18:55:52.376" level="WARN">del-notif: slovnik 'notif_dict' ulozen v ramci KW 'get notifications'</msg>
-<msg timestamp="20210218 18:55:52.409" level="WARN">del-notif: maze se notifikace se jmenem: Edgar Johns</msg>
-<msg timestamp="20210218 18:55:52.413" level="WARN">del-notif: maze se id-cko notifikace: Bf5th29A1FHa</msg>
-<msg timestamp="20210218 18:55:52.417" level="WARN">del-notif: smazano: 1 notifikaci od: Edgar</msg>
-<msg timestamp="20210218 18:55:52.475" level="WARN">send-money: jmeno prijemce ma receiver-id: qywYp6hS0U</msg>
-<msg timestamp="20210218 18:55:52.504" level="WARN">send-money: jmeno prijemce ma receiver-id: qywYp6hS0U</msg>
-<msg timestamp="20210218 18:55:52.603" level="WARN">send-money: request: {'transactionType': 'payment', 'amount': 1, 'description': 'Penize od Jessyca.Kuhic', 'senderId': 't45AiwidW', 'receiverId': 'qywYp6hS0U'}</msg>
-<msg timestamp="20210218 18:55:52.607" level="WARN">send-money: response: {'transaction': {'id': 'blvU2hkLm', 'uuid': 'f6aad244-bd9a-4f5b-bb21-6655fdea0456', 'amount': 100, 'description': 'Penize od Jessyca.Kuhic', 'receiverId': 'qywYp6hS0U', 'senderId': 't45AiwidW', 'privacyLevel': 'public', 'status': 'complete', 'createdAt': '2021-02-18T17:55:52.562Z', 'modifiedAt': '2021-02-18T17:55:52.562Z'}}</msg>
-<msg timestamp="20210218 18:55:52.611" level="WARN">send-money: sender-id: t45AiwidW</msg>
-<msg timestamp="20210218 18:55:52.622" level="WARN">send-money: receiver-id: qywYp6hS0U</msg>
-<msg timestamp="20210218 18:55:52.641" level="WARN">send-money: expected_response: {'transaction': {'id': '', 'uuid': '', 'amount': 100, 'description': 'Penize od Jessyca.Kuhic', 'receiverId': 'qywYp6hS0U', 'senderId': 't45AiwidW', 'privacyLevel': 'public', 'status': 'complete', 'createdAt': '', 'modifiedAt': ''}}</msg>
-<msg timestamp="20210218 18:55:52.644" level="WARN">send-money: actual_response: {'transaction': {'id': 'blvU2hkLm', 'uuid': 'f6aad244-bd9a-4f5b-bb21-6655fdea0456', 'amount': 100, 'description': 'Penize od Jessyca.Kuhic', 'receiverId': 'qywYp6hS0U', 'senderId': 't45AiwidW', 'privacyLevel': 'public', 'status': 'complete', 'createdAt': '2021-02-18T17:55:52.562Z', 'modifiedAt': '2021-02-18T17:55:52.562Z'}}</msg>
-<msg timestamp="20210218 18:55:52.659" level="WARN">send-money: check-pred-platbou: $1,679.37</msg>
-<msg timestamp="20210218 18:55:52.666" level="WARN">send-money: check-po-platbe: $1,678.37</msg>
-<msg timestamp="20210218 18:55:52.678" level="WARN">send-money: doslo k uspesnemu odeslani 1 $ na ucet prijemce</msg>
-<msg timestamp="20210218 18:55:52.725" level="WARN">logout: doslo k uspesnemu odhlaseni uzivatele</msg>
+<msg timestamp="20210220 17:54:48.576" level="WARN">Argumenty listeneru: ()
+</msg>
+<msg timestamp="20210220 17:54:49.289" level="WARN">login: doslo k uspesnemu prihlaseni uzivatele: Katharina_Bernier</msg>
+<msg timestamp="20210220 17:54:49.298" level="WARN">get-bank-acc: detaily uctu z api jsou shodne s ocekavanymi vysledky</msg>
+<msg timestamp="20210220 17:54:49.325" level="WARN">del-notif: slovnik 'notif_dict' ulozen v ramci KW 'get notifications'</msg>
+<msg timestamp="20210220 17:54:49.325" level="WARN">del-notif: uzivatel nema zadne notifikace od: Edgar</msg>
+<msg timestamp="20210220 17:54:49.334" level="WARN">send-money: jmeno prijemce ma receiver-id: qywYp6hS0U</msg>
+<msg timestamp="20210220 17:54:49.347" level="WARN">send-money: jmeno prijemce ma receiver-id: qywYp6hS0U</msg>
+<msg timestamp="20210220 17:54:49.419" level="WARN">send-money: request: {'transactionType': 'payment', 'amount': 1, 'description': 'Penize od Jessyca.Kuhic', 'senderId': 't45AiwidW', 'receiverId': 'qywYp6hS0U'}</msg>
+<msg timestamp="20210220 17:54:49.419" level="WARN">send-money: response: {'transaction': {'id': 'LDj0HTiga', 'uuid': 'e5b3e1d2-0b4a-49e1-8614-61d4df7aaf0a', 'amount': 100, 'description': 'Penize od Jessyca.Kuhic', 'receiverId': 'qywYp6hS0U', 'senderId': 't45AiwidW', 'privacyLevel': 'public', 'status': 'complete', 'createdAt': '2021-02-20T16:54:49.363Z', 'modifiedAt': '2021-02-20T16:54:49.363Z'}}</msg>
+<msg timestamp="20210220 17:54:49.420" level="WARN">send-money: sender-id: t45AiwidW</msg>
+<msg timestamp="20210220 17:54:49.420" level="WARN">send-money: receiver-id: qywYp6hS0U</msg>
+<msg timestamp="20210220 17:54:49.421" level="WARN">send-money: expected_response: {'transaction': {'id': '', 'uuid': '', 'amount': 100, 'description': 'Penize od Jessyca.Kuhic', 'receiverId': 'qywYp6hS0U', 'senderId': 't45AiwidW', 'privacyLevel': 'public', 'status': 'complete', 'createdAt': '', 'modifiedAt': ''}}</msg>
+<msg timestamp="20210220 17:54:49.422" level="WARN">send-money: actual_response: {'transaction': {'id': 'LDj0HTiga', 'uuid': 'e5b3e1d2-0b4a-49e1-8614-61d4df7aaf0a', 'amount': 100, 'description': 'Penize od Jessyca.Kuhic', 'receiverId': 'qywYp6hS0U', 'senderId': 't45AiwidW', 'privacyLevel': 'public', 'status': 'complete', 'createdAt': '2021-02-20T16:54:49.363Z', 'modifiedAt': '2021-02-20T16:54:49.363Z'}}</msg>
+<msg timestamp="20210220 17:54:49.430" level="WARN">send-money: check-pred-platbou: $1,675.37</msg>
+<msg timestamp="20210220 17:54:49.431" level="WARN">send-money: check-po-platbe: $1,674.37</msg>
+<msg timestamp="20210220 17:54:49.431" level="WARN">send-money: doslo k uspesnemu odeslani 1 $ na ucet prijemce</msg>
+<msg timestamp="20210220 17:54:49.449" level="WARN">logout: doslo k uspesnemu odhlaseni uzivatele</msg>
+<msg timestamp="20210220 17:54:49.451" level="WARN">reporting-url: https://quickchart.io/chart?c=%7B%22type%22%3A+%22bar%22%2C+%22data%22%3A+%7B%22labels%22%3A+%5B%22Get+bank+account%22%2C+%22Get+notifications%22%2C+%22Delete+n+notifications%22%2C+%22Send+money%22%5D%2C+%22datasets%22%3A+%5B%7B%22label%22%3A+%22Fail%22%2C+%22backgroundColor%22%3A+%22rgba%28255%2C+99%2C+132%2C+0.5%29%22%2C+%22borderColor%22%3A+%22rgb%28255%2C+99%2C+132%29%22%2C+%22borderWidth%22%3A+1%2C+%22data%22%3A+%5B0%2C+0%2C+1%2C+0%5D%7D%2C+%7B%22label%22%3A+%22Pass%22%2C+%22backgroundColor%22%3A+%22rgba%2854%2C+162%2C+235%2C+0.5%29%22%2C+%22borderColor%22%3A+%22rgb%2854%2C+162%2C+235%29%22%2C+%22borderWidth%22%3A+1%2C+%22data%22%3A+%5B1%2C+1%2C+0%2C+1%5D%7D%5D%7D%2C+%22options%22%3A+%7B%22responsive%22%3A+true%2C+%22legend%22%3A+%7B%22position%22%3A+%22top%22%7D%2C+%22title%22%3A+%7B%22display%22%3A+true%2C+%22text%22%3A+%22Automatizace+aplikace+RWA+pomoci+robot+framework%2C+python+a+selenium%22%7D%7D%7D&amp;w=500&amp;h=300&amp;bkg=%23ffffff&amp;devicePixelRatio=2.0&amp;f=png</msg>
+<msg timestamp="20210220 17:54:49.451" level="WARN">reporting-qr-kod: https://quickchart.io/qr?text=https://quickchart.io/chart?c=%7B%22type%22%3A+%22bar%22%2C+%22data%22%3A+%7B%22labels%22%3A+%5B%22Get+bank+account%22%2C+%22Get+notifications%22%2C+%22Delete+n+notifications%22%2C+%22Send+money%22%5D%2C+%22datasets%22%3A+%5B%7B%22label%22%3A+%22Fail%22%2C+%22backgroundColor%22%3A+%22rgba%28255%2C+99%2C+132%2C+0.5%29%22%2C+%22borderColor%22%3A+%22rgb%28255%2C+99%2C+132%29%22%2C+%22borderWidth%22%3A+1%2C+%22data%22%3A+%5B0%2C+0%2C+1%2C+0%5D%7D%2C+%7B%22label%22%3A+%22Pass%22%2C+%22backgroundColor%22%3A+%22rgba%2854%2C+162%2C+235%2C+0.5%29%22%2C+%22borderColor%22%3A+%22rgb%2854%2C+162%2C+235%29%22%2C+%22borderWidth%22%3A+1%2C+%22data%22%3A+%5B1%2C+1%2C+0%2C+1%5D%7D%5D%7D%2C+%22options%22%3A+%7B%22responsive%22%3A+true%2C+%22legend%22%3A+%7B%22position%22%3A+%22top%22%7D%2C+%22title%22%3A+%7B%22display%22%3A+true%2C+%22text%22%3A+%22Automatizace+aplikace+RWA+pomoci+robot+framework%2C+python+a+selenium%22%7D%7D%7D&amp;w=500&amp;h=300&amp;bkg=%23ffffff&amp;devicePixelRatio=2.0&amp;f=png&amp;size=250</msg>
 </errors>
 </robot>
