@@ -89,22 +89,22 @@ class Notifications:
         service_name = 'notification_id'
         request_url = dataprovider.get_api_url(self.builtin.get_variable_value('${API_NAME}'), service_name)
         request_body = dataprovider.get_var(self.builtin.get_variable_value('${DEL_NOTIF}'), 'body')
-        notif_dict_id = "notif_dict_single['results'][i]['id']"
-        notif_dict_uname = "notif_dict_single['results'][i]['userFullName']"
         del_notif_counter = 0
         notif_dict_len = len(notif_dict_single['results'])
+        _notif_dict_id = "notif_dict_single['results'][i]['id']"
+        _notif_dict_uname = "notif_dict_single['results'][i]['userFullName']"
         if cnt == 'all':
             pass
         elif notif_dict_len - cnt >= 0:
             notif_dict_len = cnt
         # mazani notifikaci podle 'id' notifikace
         for i in range(notif_dict_len):
-            request_body['id'] = eval(notif_dict_id)
+            request_body['id'] = eval(_notif_dict_id)
             # send-request: pro kazdou notifikaci se posle jeden request PATCH /notifications/{notification_id}
-            send_request(self.session, request_method, request_url.format(eval(notif_dict_id)), request_body)
+            send_request(self.session, request_method, request_url.format(eval(_notif_dict_id)), request_body)
             del_notif_counter += 1
-            logging.warning(f"del-notif: maze se notifikace se jmenem: {eval(notif_dict_uname)}")
-            logging.warning(f"del-notif: maze se id-cko notifikace: {eval(notif_dict_id)}")
+            logging.warning(f"del-notif: maze se notifikace se jmenem: {eval(_notif_dict_uname)}")
+            logging.warning(f"del-notif: maze se id-cko notifikace: {eval(_notif_dict_id)}")
         logging.warning(f'del-notif: smazano: {del_notif_counter} notifikaci od: {name}')
 
     @staticmethod
