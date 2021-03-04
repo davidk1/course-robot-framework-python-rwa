@@ -26,9 +26,9 @@ class BankAccounts:
     def _check_bank_acc(self, resp_json):
         """Kontrola python slovniku v odpovedi z api vuci ocekavanemu slovniku z testovacich dat.
 
-        :param resp_json: telo response vracene z api po zavolani GET /bankAccounts [python dictionary]
+        :param resp_json: response body vracena z api po zavolani GET /bankAccounts [python dictionary]
         """
-        expected_resp = dataprovider.get_var(self.builtin.get_variable_value('${CHECK_BANK_ACC}'), 'expected_response')
+        expected_resp = dataprovider.get_var(self.builtin.get_variable_value('${GET_BANK_ACC}'), 'expected_response')
         diff = DeepDiff(expected_resp, resp_json)
         assert diff == {}, f'err: chyba v detailu bankovniho uctu vraceneho z api: {diff}'
         logging.warning(f'get-bank-acc: detaily uctu z api jsou shodne s ocekavanymi vysledky')

@@ -11,4 +11,7 @@ transaction_data = {
     "description": "Vracim dluh"
 }
 
-
+notification_data = {
+    "related_user": "Edgar Johns",
+    "related_action": "received"
+}

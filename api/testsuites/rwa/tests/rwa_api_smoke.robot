@@ -18,7 +18,7 @@ Suite Teardown    teardown
 ${API_NAME}               rwa_api
 ${LOGIN}                  api.testsuites.rwa.testdata.login
 ${LOGOUT}                 api.testsuites.rwa.testdata.logout
-${CHECK_BANK_ACC}         api.testsuites.rwa.testdata.check_bank_acc
+${GET_BANK_ACC}           api.testsuites.rwa.testdata.get_bank_acc
 ${DEL_NOTIF}              api.testsuites.rwa.testdata.del_notif
 ${SEND_MONEY}             api.testsuites.rwa.testdata.send_money
 
@@ -26,7 +26,7 @@ ${SEND_MONEY}             api.testsuites.rwa.testdata.send_money
 *** Test Cases ***
 Get bank account
     [Documentation]    Test overi spravnost detailu vychoziho bankovniho uctu prihlaseneho uzivatele.
-    [Tags]             check_bank_acc    smoke
+    [Tags]             get_bank_acc    smoke
     get bank account
 
 Get notifications

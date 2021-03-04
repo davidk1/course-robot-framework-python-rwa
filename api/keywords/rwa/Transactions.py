@@ -58,10 +58,11 @@ class Transactions:
         self._check_current_balance(request_body['amount'])
 
     def _check_tx_response(self, request_body, resp_json):
-        """Metoda overi ocekavany vysledek vuci parametrum v odpovedi z api po odeslani platby.
+        """Metoda overi vybrane parametry v python slovniku ziskane v odpovedi z api po odeslani platby vuci ocekavanym
+        parametrum z testovacich dat.
 
-        :param request_body: telo requestu odeslaneho v ramci platby pomoci POST /transactions [python dictionary]
-        :param resp_json: telo response vracene z api po odeslani platby [python dictionary]
+        :param request_body: request body odeslany v ramci platby pomoci POST /transactions [python dictionary]
+        :param resp_json: response body vracena z api po odeslani platby [python dictionary]
         """
         # nacteni template s ocekavanymi vysledky z testovacich dat a vyplneni parametru, kde je None
         expected_resp = dataprovider.get_var(self.builtin.get_variable_value('${SEND_MONEY}'), 'expected_response')
@@ -78,7 +79,7 @@ class Transactions:
         assert diff == {}, f'err: z api se nevraci validni data pro /transactions: {diff}'
 
     def _check_current_balance(self, amount=None):
-        """Nacte aktualni zustatek uzivatele zavolanim GET /checkAuth a overi, jestli doslo ke spravnemu odecteni
+        """Metoda nacte aktualni zustatek uzivatele zavolanim GET /checkAuth a overi, jestli doslo ke spravnemu odecteni
         castky po odeslani platby.
         """
         request_method = 'get'

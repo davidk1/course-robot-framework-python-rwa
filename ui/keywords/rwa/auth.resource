@@ -1,21 +1,23 @@
 *** Settings ***
 Library    ../../pageobjects/rwa/LoginPage.py
-Library    ../../pageobjects/rwa/SharedComponents.py
+Library    ../../pageobjects/rwa/SideNavBar.py
 
 
 *** Keywords ***
 Login to rwa
     [Arguments]    ${username}=${login_data}[username]    ${password}=${login_data}[password]
     [Documentation]    Prihlasi se do aplikace rwa
-# todo: misto sleep nastavit selenium speed
-    sleep    1s
+    log to console    Prihlasuji se do aplikace rwa...
     enter username    ${username}
-    sleep    1s
     enter password    ${password}
-    sleep    1s
     click sign in button
-    sleep    1s
+    wait for logout button
+    log to console    Prihlaseni do aplikace rwa probehlo uspesne.
+
 
 Logout from rwa
     [Documentation]    Odhlasi se z aplikace rwa
+    log to console    Odhlasuji se z aplikace rwa...
     click logout button
+    wait_for_sign_in_button
+    log to console    Odhlaseni z aplikace rwa probehlo uspesne.
