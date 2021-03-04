@@ -1,6 +1,6 @@
 *** Settings ***
 Documentation    Testovaci sada obsahuje vybrane testy pro validaci rwa api. Pro prihlaseni do api se pouziva
-...              uzivatel: Katharina_Bernier.1234567890
+...              uzivatel: Katharina_Bernier.
 
 Library    ../../../../_common/
 Library    ../../../keywords/rwa/SuiteSetup.py
