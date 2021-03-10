@@ -32,12 +32,12 @@ Get bank account
 Get notifications
     [Documentation]    Test vrati seznam vsech notifikaci prihlaseneho uzivatele.
     [Tags]             get_notif    smoke
-    get notification list
+    get notifications list
 
 Delete n notifications
     [Documentation]    Test smaze n anebo vsechny notifikace prihlaseneho uzivatele podle vybraneho jmena v notifikaci.
     [Tags]             del_notif    smoke
-    get notification list
+    get notifications list
     delete notifications    name=Edgar     cnt=${1}    #cnt=all
 
 Send money
