@@ -3,7 +3,8 @@ Implementation of real test automation framework including examples of validatin
 
 ## Installation prerequisities
 - python >= 3.6
-- chrome driver version supporting your chrome browser version: https://chromedriver.chromium.org/downloads
+- chrome-driver version supporting your chrome-browser version: https://chromedriver.chromium.org/downloads
+- chrome-driver setup: https://chromedriver.chromium.org/getting-started
 - realworld-app: https://github.com/cypress-io/cypress-realworld-app
 - clone the repository: 
 ```bash
