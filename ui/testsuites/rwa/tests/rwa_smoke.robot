@@ -34,7 +34,7 @@ Send money to recipient
     [Teardown]    logout from rwa
 
 Delete notification
-    [Documentation]    Smazani upozorneni
+    [Documentation]    Smazani upozorneni1
     [Tags]    notifications    notif
     [Setup]    login to rwa
     open menu notifications
