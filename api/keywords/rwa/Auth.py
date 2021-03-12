@@ -8,9 +8,12 @@ from _common.libraries.requests.api_requests import send_request
 class Auth:
     """Klicova slova pro prihlaseni a odhlaseni uzivatele do aplikace rwa."""
 
+    SESSION_ID = None
+
     def __init__(self):
         self.builtin = BuiltIn()
-        self.session = self.builtin.get_variable_value('${SESSION_ID}')
+        self.session = self.builtin.get_variable_value('${SESSION_ID}')  # priklad ulozeni session-id pomoci KWs robota
+        Auth.SESSION_ID = self.session  # priklad ulozeni session-id pomoci promenne tridy
 
     def login_to_rwa(self):
         """KW prihlasi vybraneho uzivatele do aplikace rwa."""
@@ -36,7 +39,7 @@ class Auth:
         service_name = 'logout'
         request_url = dataprovider.get_api_url(self.builtin.get_variable_value('${API_NAME}'), service_name)
         # send-request: odhlaseni uzivatele z aplikace rwa pomoci /logout
-        resp = send_request(self.session, request_method, request_url, allow_redirects=False)
+        resp = send_request(Auth.SESSION_ID, request_method, request_url, allow_redirects=False)
         # check: overeni status kodu a cookies v odpovedi z api
         expected_status_code = dataprovider.get_var(self.builtin.get_variable_value('${LOGOUT}'), 'status_code')
         expected_cookies = dataprovider.get_var(self.builtin.get_variable_value('${LOGOUT}'), 'cookies')
