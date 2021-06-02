@@ -4,7 +4,7 @@ URLS = "_common.libraries.datasource.urls"    # cesta k modulu s konfiguraci bas
 
 
 def get_var(test_data_path, var):
-    """Metoda vraci obsah promenne ulozeny v souboru s testovacimi daty.
+    """Metoda vraci obsah konkretni promenne ze souboru s testovacimi daty.
 
     :param test_data_path: absolutni cesta k souboru s testovacimi daty (zapis pomoci teckove notace)
     :param var: nazev promenne, jejiz obsah se vrati ze souboru s testovacimi daty
@@ -15,19 +15,19 @@ def get_var(test_data_path, var):
 
 
 def get_base_url(name):
-    """Metoda vraci base URL pro vybranou alikaci.
+    """Metoda vraci base URL pro vybranou aplikaci / api.
 
     :param name: nazev aplikace
     """
     return get_var(URLS, 'baseurls')[name]
 
 
-def get_api_url(name, service_name):
+def get_api_url(api_name, endpoint):
     """Metoda vraci URL pro vybrane api.
 
-    :param name: nazev api
-    :param service_name: nazev sluzby, pro kterou se vyhleda endpoint
+    :param api_name: nazev api
+    :param endpoint: nazev sluzby
     """
-    baseurl = get_base_url(name)
-    endpoint = get_var(URLS, 'endpoints')[name][service_name]
+    baseurl = get_base_url(api_name)
+    endpoint = get_var(URLS, 'endpoints')[api_name][endpoint]
     return baseurl + endpoint

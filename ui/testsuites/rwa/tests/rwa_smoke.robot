@@ -1,6 +1,5 @@
 *** Settings ***
 Documentation    Zakladni testy aplikace Real World Application
-...    prihlaseni, odeslani platby, smazani upozorneni, odhlaseni
 
 Library    ../../../../_common/
 Resource    ../../../keywords/_common/browser.resource
