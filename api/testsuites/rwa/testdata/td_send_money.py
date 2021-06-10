@@ -18,7 +18,7 @@ expected_response = {                             # hodnoty "" se v odpovedi z a
         "id": "",
         "uuid": "",
         "amount": None,
-        "description": None,
+        "description": request_body['description'],
         "receiverId": None,
         "senderId": None,
         "privacyLevel": "public",

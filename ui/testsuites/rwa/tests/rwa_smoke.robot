@@ -7,7 +7,7 @@ Resource    ../../../keywords/rwa/auth.resource
 Resource    ../../../Keywords/rwa/transactions.resource
 Resource    ../../../Keywords/rwa/notifications.resource
 
-Suite Setup    open browser to application    rwa
+Suite Setup    open browser to application    rwa    browser=ff
 Suite Teardown    close all browsers
 
 Variables    ../testdata/rwa_smoke_testdata.py
@@ -19,13 +19,13 @@ ${selenium_command_delay}    0.3
 
 *** Test Cases ***
 Successful login to application
-    [Documentation]    Prihlaseni do aplikace - uspesne
+    [Documentation]    Uspesne prihlaseni do aplikace rwa
     [Tags]    login
     login to rwa    ${login_data}[username]    ${login_data}[password]
     logout from rwa
 
 Send money to recipient
-    [Documentation]    Odeslani platby - uspesne
+    [Documentation]    Odeslani platby
     [Tags]    transaction    trans
     [Setup]    login to rwa
     get actual account balance

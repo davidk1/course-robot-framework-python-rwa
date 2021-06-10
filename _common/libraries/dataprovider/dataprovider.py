@@ -1,4 +1,5 @@
 import importlib
+from robot.api import logger
 
 URLS = "_common.libraries.datasource.urls"    # cesta k modulu s konfiguraci baseurls a endpoints pro api a ui testy
 
@@ -19,7 +20,9 @@ def get_base_url(name):
 
     :param name: nazev aplikace
     """
-    return get_var(URLS, 'baseurls')[name]
+    base_url = get_var(URLS, 'baseurls')[name]
+    logger.console('\tnalezena adresa aplikace ' + name + ': ' + base_url)
+    return base_url
 
 
 def get_api_url(api_name, endpoint):

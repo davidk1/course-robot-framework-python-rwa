@@ -10,4 +10,5 @@ class TopNavBar(BasePage):
     @capture_screenshot_on_failure
     def click_new_transaction_button(self):
         """Stiskne tlacitko `$ NEW` pro otevreni nove transakce"""
+        self.logger.console('\tklikam na tlacitko "$ NEW"')
         self._wait_and_click_element(self.new_transaction_button)

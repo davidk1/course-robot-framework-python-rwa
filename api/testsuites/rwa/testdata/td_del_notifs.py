@@ -1,5 +1,5 @@
 name = 'Edgar'             # jmeno, jehoz notifikace se smazou
-cnt = 'all'                # pocet notifikaci ke smazani: vsechny -> jednotlive [int] / 'all'[str]
+cnt = 'all'                # pocet notifikaci ke smazani: vsechny / jednotlive: [int] / 'all'[str]
 
 request_method = 'patch'
 endpoint = 'notification_id'

@@ -15,32 +15,23 @@ class Listener:
         self.test_names = []
         self.test_statuses = []
 
-    def end_test(self, name, result):
-        """Robot vola metodu end_test vzdy po ukonceni kazdeho testu. Metoda uklada nazvy vsech spustenych testu vcetne
-        jejich stavu PASS / FAIL.
+    def end_test(self, data, result):
+        """Robot zavola metodu end_test vzdy po ukonceni kazdeho testu. Metoda pro kazdy test ulozi nazev testu vcetne
+        jeho stavu PASS / FAIL.
+
+        :param data: objekt s vlastnostmi konkretniho testu
+        :param result: objekt s vysledky konkretniho testu
         """
-        self.test_names.append(result.name)
+        self.test_names.append(data.name)
         self.test_statuses.append(result.status)
 
-    def end_suite(self, name, result):
-        """Robot vola metodu end_suite vzdy po ukonceni vsech testu v testovaci sade. Metoda nastavi konfiguraci pro
-        reportingovy nastroj podle typu testu (api / ui) a potom ho zavola.
-        """
-        cfg_reporting_tool = self._prepare_cfg_for_reporting_tool()
-        reporting.report_results(cfg_reporting_tool)
+    def end_suite(self, data, result):
+        """Robot zavola metodu end_suite vzdy po ukonceni vsech testu v testovaci sade. Metoda nejdrive upravi vychozi
+        konfiguraci reportingoveho nastroje, tzn. doplni nazvy a stavy exekuce vsech spustenych testu. Potom se nastroj
+        zavola a tim se odeslou vysledky testu, ktere jsou dostupne pres http protokol na adrese uvedene v logu kazdeho
+        testu jako 'reporting-url' a 'reporting-qr-kod'.
 
-    def _prepare_cfg_for_reporting_tool(self):
-        """Jakmile dobehne posledni test v testovaci sade, metoda pripravi konfiguraci pro zobrazeni vysledku v
-        reportovacim nastroji.
+        :param data: objekt s vlastnostmi konkretni testovaci sady
+        :param result: objekt s vysledky konkretni testovaci sady
         """
-        cfg = reporting.config    # nacte vychozi konfiguraci reportovaciho nastroje
-        # v konfiguraci upravi jmena testu a jejich stavy (PASS / FAIL)
-        for i in range(len(self.test_names)):
-            cfg['data']['labels'].append(self.test_names[i])
-            if self.test_statuses[i] == 'FAIL':
-                cfg['data']['datasets'][0]['data'].append(1)
-                cfg['data']['datasets'][1]['data'].append(0)
-            else:
-                cfg['data']['datasets'][1]['data'].append(1)
-                cfg['data']['datasets'][0]['data'].append(0)
-        return cfg
+        reporting.report_results(self.test_names, self.test_statuses)

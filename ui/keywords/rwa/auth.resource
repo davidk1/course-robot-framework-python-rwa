@@ -7,17 +7,17 @@ Library    ../../pageobjects/rwa/SideNavBar.py
 Login to rwa
     [Arguments]    ${username}=${login_data}[username]    ${password}=${login_data}[password]
     [Documentation]    Prihlasi se do aplikace rwa
-    log to console    Prihlasuji se do aplikace rwa...
+    log to console    ${\n}Prihlaseni do aplikace rwa
     enter username    ${username}
     enter password    ${password}
     click sign in button
     wait for logout button
-    log to console    Prihlaseni do aplikace rwa probehlo uspesne.
+    log to console    Prihlaseni do aplikace rwa probehlo uspesne - OK
 
 
 Logout from rwa
     [Documentation]    Odhlasi se z aplikace rwa
-    log to console    Odhlasuji se z aplikace rwa...
+    log to console    ${\n}Odhlaseni z aplikace rwa
     click logout button
     wait_for_sign_in_button
-    log to console    Odhlaseni z aplikace rwa probehlo uspesne.
+    log to console    Odhlaseni z aplikace rwa probehlo uspesne - OK

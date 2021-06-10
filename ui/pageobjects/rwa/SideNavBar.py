@@ -12,6 +12,7 @@ class SideNavBar(BasePage):
     @capture_screenshot_on_failure
     def click_logout_button(self):
         """Stiskne tlacitko `Logout` pro odhlaseni z aplikace"""
+        self.logger.console('\tklikam na tlacitlo "Logout"')
         self._wait_and_click_element(self.logout_button)
 
     @capture_screenshot_on_failure
@@ -20,11 +21,13 @@ class SideNavBar(BasePage):
 
         Funkce je pouzita pro kontrolu uspesneho prihlaseni do aplikace.
         """
+        self.logger.console('\tcekam na zobrazeni tlacitka "Logout" v nabidce menu')
         self._wait_for_element(self.logout_button)
 
     @capture_screenshot_on_failure
     def click_menu_notifications(self):
-        """Stiskne nabidku `Notifications` v nabudce menu"""
+        """Stiskne polozku `Notifications` v nabidce menu"""
+        self.logger.console('\tklikam na polozku "Notifications" v nabidce menu')
         self._wait_and_click_element(self.menu_item_notifications)
 
     @capture_screenshot_on_failure
@@ -33,6 +36,7 @@ class SideNavBar(BasePage):
 
         :returns account_balance: aktualni zustatek na uctu
         """
+        self.logger.console('\tnacitam aktualni zuzsatek na uctu')
         self._wait_for_element(self.account_balance_label)
         account_balance = self.selib.get_text(self.account_balance_label)
         account_balance = account_balance.lstrip('$')
