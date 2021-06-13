@@ -140,6 +140,6 @@ ehthumbs.db
 Thumbs.db
 
 # Robot-framework artefacts
-tests/*.html
-tests/*.xml
+**/tests/*.html
+**/tests/*.xml
 .idea*
