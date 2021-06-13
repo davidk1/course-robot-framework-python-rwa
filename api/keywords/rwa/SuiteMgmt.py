@@ -11,7 +11,7 @@ class SuiteMgmt:
         self.session = self.factory.create_api_session  # vytvori instanci session pro vsechna volani rwa api v testu
 
     def setup(self):
-        """KW prihlasi uzivatele do aplikace rwa."""
+        """KW ulozi aktivni session pro vsechna volani rwa api a prihlasi uzivatele do aplikace rwa."""
         self.builtin.set_suite_variable('${SESSION_ID}', self.session)  # ulozi instanci session do promenne SESSION_ID
         self.auth.login_to_rwa()
 

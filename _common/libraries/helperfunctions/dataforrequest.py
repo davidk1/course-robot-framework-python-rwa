@@ -3,8 +3,8 @@ import _common.libraries.factory.concretefactory as concretefactory
 
 class DataForRequest:
     """Pomocna trida, ktera vraci testovaci data pro volani jednotlivych http requestu. Data se nacitaji pomoci metod
-    data provideru s parametry: 'td', ktery urcuje cestu k testovacim datum pro konkretni test (pomoci teckove notace)
-    v syntaxi robota: ${promenna} a 'api_name', ktery urcuje nazev api, pro ktere se vrati prislusne URL.
+    data provideru s parametry: 'td', ktery urcuje relativni cestu k testovacim datum pro konkretni test pomoci teckove
+    notace a 'api_name', ktery urcuje nazev api, pro ktere se vrati prislusne URL.
     """
     def __init__(self):
         self.factory = concretefactory.ConcreteFactory()

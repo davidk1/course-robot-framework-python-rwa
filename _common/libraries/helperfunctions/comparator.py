@@ -12,4 +12,7 @@ def compare_results(actual, expected, exclude_paths=None):
     znamena, ze jsou oba porovnavane objekty totozne
     """
     result = DeepDiff(actual, expected, exclude_paths=exclude_paths)
-    return {'bool': result == {}, 'detail': result}
+    return {
+        'bool': result == {},
+        'detail': result
+    }

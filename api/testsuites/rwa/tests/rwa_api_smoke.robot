@@ -1,10 +1,9 @@
 *** Settings ***
-Documentation    Testovaci sada obsahuje vybrane testy pro validaci sluzeb rwa api. Pro prihlaseni do aplikace je
-...              nastaven vychozi uzivatel: Katharina_Bernier
+Documentation    Testovaci sada obsahuje vybrane testy pro validaci sluzeb rwa api. Pro prihlaseni do aplikace se
+...              pouziva uzivatel: Katharina_Bernier
 
 Library    ../../../../_common/
 Library    ../../../keywords/rwa/SuiteMgmt.py
-Library    ../../../keywords/rwa/Auth.py
 Library    ../../../keywords/rwa/BankAccounts.py
 Library    ../../../keywords/rwa/Notifications.py
 Library    ../../../keywords/rwa/Transactions.py
