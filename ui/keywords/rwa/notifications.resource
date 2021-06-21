@@ -8,7 +8,7 @@ Library    ../../PageObjects/rwa/Notifications.py
 *** Keywords ***
 Open menu notifications
     [Documentation]    Klikne na polozku Notifications v levem menu aplikace
-    log to console    ${\n}Oteviram menu Notifications
+    log to console    ${\n}Otevirani menu Notifications
     click menu notifications
     wait for notification list
     log to console    Otevreno menu Notifications - OK
@@ -18,7 +18,7 @@ Delete notifications
     [Documentation]    Vymaze postupne vsechna upozorneni ktera se tykaji daneho uzivatele {user} a dane akce {action}
     ...    lze filtrovat podle uzivatele, akce, kombinace nebo smazat vsechna upozorneni (v pripade prednastavenych
     ...    vstupnich parametru - prazdych retezcu)
-    ${message}    set variable    Budou smazana upozorneni
+    ${message}    set variable    Mazani upozorneni
     ${message}    set variable if    '${user}'!='${EMPTY}'    ${message} pro uzivatele "${user}"    ${message}
     ${message}    set variable if    '${action}'!='${EMPTY}'    ${message} pro akci "${action}"    ${message}
     log to console    ${\n}${message}.
@@ -28,5 +28,5 @@ Delete notifications
         run keyword if    '${response}' == 'None'    run keywords
         ...    log to console    Pocet odstranenych upozorneni: ${index}
         ...    AND    exit for loop
-        log to console    ${SPACE} ${SPACE} Bylo smazano upozorneni "${response}"
+        log to console    ${SPACE} ..Bylo smazano upozorneni "${response}"
     END

@@ -40,7 +40,3 @@ class AbstractFactory(ABC):
     @abstractmethod
     def get_logging(self):
         pass
-
-    @abstractmethod
-    def get_requests(self):
-        pass

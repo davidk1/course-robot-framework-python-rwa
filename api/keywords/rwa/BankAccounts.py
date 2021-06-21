@@ -13,17 +13,21 @@ class BankAccounts:
         self.dataprovider = self.factory.get_dataprovider
         self.logging = self.factory.get_logging
 
-    def get_bank_accounts(self):
-        """KW overi detaily vychoziho bankovniho uctu prihlaseneho uzivatele pomoci GET /bankAccounts."""
+    def get_bank_accounts(self, td='${TD_GET_BANK_ACC}'):
+        """KW overi detaily vychoziho bankovniho uctu prihlaseneho uzivatele pomoci GET /bankAccounts.
+
+        :param td: nazev promenne obsahujici relativni cestu k testovacim datum pro KW get bank accounts, aby bylo mozne
+        ziskat detail bankovniho uctu pro ruzne uzivatele; cesta k testovacim datum je zapsana pomoci teckove notace od
+        korene projektu
+        """
         # prepare-test-data
-        request_method = self.drq.get_request_method('${TD_GET_BANK_ACC}')
-        request_url = self.drq.get_request_url('${API_NAME}', '${TD_GET_BANK_ACC}')
+        request_method = self.drq.get_request_method(td)
+        request_url = self.drq.get_request_url('${API_NAME}', td)
         # send-request: ziska detail vsech bankovnich uctu prihlaseneho uzivatele pomoci GET /bankAccounts
         resp = self.api.send_request(request_method, request_url)
         resp_json = resp.json()
         # check: kontrola python slovniku v odpovedi z api vuci ocekavanemu slovniku z testovacich dat
-        expected_response = self.dataprovider.get_var(self.builtin.get_variable_value('${TD_GET_BANK_ACC}'),
-                                                      'expected_response')
+        expected_response = self.dataprovider.get_var(self.builtin.get_variable_value(td), 'expected_response')
         check = self.compare_results(resp_json, expected_response)
         assert check['bool'], f'err-get-bank-acc: chyba v detailu bankovniho uctu vraceneho z api: {check["detail"]}'
         self.logging.warning(f'get-bank-acc: detaily uctu z api jsou shodne s ocekavanymi vysledky')

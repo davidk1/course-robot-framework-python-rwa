@@ -27,10 +27,10 @@ Check account balance change
     ...    a hodnoty globalni promenne {reference_account_balance}, tato promenna ma hodnotu 0 nebo je do ni ulozena
     ...    hodnota aktualniho zustatku pri volani klicoveho slova `Get actual account balance`
     log to console    ${\n}Vyhodnoceni zmeny zustatku na uctu
-    log to console    ${SPACE} ${SPACE} puvodni vyse zustatku na uctu byla: ${reference_account_balance}
+    log to console    ${SPACE} ..puvodni vyse zustatku na uctu byla: ${reference_account_balance}
     ${actual_account_balance}    get account balance
-    log to console    ${SPACE} ${SPACE} aktualni vyse zustatku na uctu je: ${actual_account_balance}
-    log to console    ${SPACE} ${SPACE} ocekavana zmena zustatku: ${expected_balance_change}
+    log to console    ${SPACE} ..aktualni vyse zustatku na uctu je: ${actual_account_balance}
+    log to console    ${SPACE} ..ocekavana zmena zustatku: ${expected_balance_change}
     ${result}    set variable
     ...    ${{${reference_account_balance} - ${actual_account_balance} == ${expected_balance_change}}}
     log to console    Vyhodnoceni zmeny vyse zustatku na uctu skocilo s vysledkem: ${result}

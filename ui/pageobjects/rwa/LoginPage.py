@@ -13,7 +13,7 @@ class LoginPage(BasePage):
 
         :param username: jmeno uzivatele
         """
-        self.logger.console('\tvkladam uzivatelske jmeno')
+        self.logger.console('  ..vkladam uzivatelske jmeno')
         self._wait_for_element_and_type_text(self.username_field, username)
 
     def enter_password(self, password):
@@ -21,15 +21,15 @@ class LoginPage(BasePage):
 
         :param password: heslo uzivatele do aplikace
         """
-        self.logger.console('\tvkladam heslo')
+        self.logger.console('  ..vkladam heslo')
         self._wait_for_element_and_type_text(self.password_field, password)
 
     def click_sign_in_button(self):
         """Stiskne tlacitko `SIGN IN`."""
-        self.logger.console('\tklikam na tlacitko "SIGN IN"')
+        self.logger.console('  ..klikam na tlacitko "SIGN IN"')
         self._wait_and_click_element(self.sign_in_button)
 
     def wait_for_sign_in_button(self):
         """Pocka na zobrazeni tlacitka SIGN IN"""
-        self.logger.console('\tcekam na tlacitko "SIGN IN"')
+        self.logger.console('  ..cekam na tlacitko "SIGN IN"')
         self._wait_for_element(self.sign_in_button)

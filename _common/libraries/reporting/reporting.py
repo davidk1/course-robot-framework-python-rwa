@@ -23,6 +23,13 @@ config = {
             "borderColor": "rgb(54, 162, 235)",
             "borderWidth": 1,
             "data": []
+          },
+         {
+            "label": "Skip",
+            "backgroundColor": "rgba(240, 255, 0, 1)",
+            "borderColor": "rgb(240, 255, 0)",
+            "borderWidth": 1,
+            "data": []
           }
         ]
       },
@@ -65,7 +72,13 @@ def _prepare_cfg_for_reporting_tool(test_names, test_statuses):
         if test_statuses[i] == 'FAIL':
             cfg['data']['datasets'][0]['data'].append(1)
             cfg['data']['datasets'][1]['data'].append(0)
-        else:
+            cfg['data']['datasets'][2]['data'].append(0)
+        elif test_statuses[i] == 'PASS':
             cfg['data']['datasets'][1]['data'].append(1)
             cfg['data']['datasets'][0]['data'].append(0)
+            cfg['data']['datasets'][2]['data'].append(0)
+        else:
+            cfg['data']['datasets'][1]['data'].append(0)
+            cfg['data']['datasets'][0]['data'].append(0)
+            cfg['data']['datasets'][2]['data'].append(1)
     return cfg

@@ -1,5 +1,4 @@
 import logging
-import requests
 from requests import Session
 from robot.libraries.BuiltIn import BuiltIn
 from .abstractfactory import AbstractFactory
@@ -51,7 +50,3 @@ class ConcreteFactory(AbstractFactory):
     @property
     def get_logging(self):
         return logging
-
-    @property
-    def get_requests(self):
-        return requests

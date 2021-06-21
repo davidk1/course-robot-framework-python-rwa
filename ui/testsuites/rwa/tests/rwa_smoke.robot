@@ -7,7 +7,7 @@ Resource    ../../../keywords/rwa/auth.resource
 Resource    ../../../Keywords/rwa/transactions.resource
 Resource    ../../../Keywords/rwa/notifications.resource
 
-Suite Setup    open browser to application    rwa    browser=ff
+Suite Setup    open browser to application    rwa    ${browser}
 Suite Teardown    close all browsers
 
 Variables    ../testdata/rwa_smoke_testdata.py
@@ -15,6 +15,7 @@ Variables    ../testdata/rwa_smoke_testdata.py
 
 *** Variables ***
 ${selenium_command_delay}    0.3
+${browser}    ff
 
 
 *** Test Cases ***

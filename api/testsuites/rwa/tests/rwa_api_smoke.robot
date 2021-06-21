@@ -1,6 +1,6 @@
 *** Settings ***
 Documentation    Testovaci sada obsahuje vybrane testy pro validaci sluzeb rwa api. Pro prihlaseni do aplikace se
-...              pouziva uzivatel: Katharina_Bernier
+...              pouziva vychozi uzivatel: Katharina_Bernier
 
 Library    ../../../../_common/
 Library    ../../../keywords/rwa/SuiteMgmt.py
@@ -35,7 +35,7 @@ Get user detail
 Get bank accounts
     [Documentation]    Test overi detail vychoziho bankovniho uctu prihlaseneho uzivatele
     [Tags]             get_bank_acc    smoke
-    get bank accounts
+    get bank accounts    #td=$TD_GET_BANK_ACC
 
 Get notifications list
     [Documentation]    Test vrati seznam vsech notifikaci prihlaseneho uzivatele
@@ -49,6 +49,6 @@ Delete n notifications
     delete notifications    name=Edgar     cnt=${1}    #cnt=all
 
 Send money
-    [Documentation]    Test odesle platbu vybranemu prijemci ze seznamu pratel
+    [Documentation]    Test odesle platbu z uctu prihlaseneho uzivatele vybranemu prijemci
     [Tags]             send_money    smoke
     send money         name=Tavares_Barrows    amount=${1}

@@ -25,13 +25,15 @@ class UserDetail:
         resp = self.api.send_request(request_method, request_url)
         resp_json = resp.json()
         # check: overi, ze zadany klic existuje v odpovedi z GET /checkAuth a pokud ano, potom vypise jeho hodnotu
-        user_detail = self._get_user_detail(key, resp_json)
+        user_detail = [v for k, v in resp_json['user'].items() if k == key]
+        user_detail = user_detail[0] if user_detail != [] else False
+        assert user_detail, f'err-get-user-detail: pozadovany klic "{key}" neexistuje v odpovedi z api'
         self.logging.warning(f"get-user-detail: detail prihlaseneho uzivatele {resp_json['user']['username']}: "
                              f"{key} = {user_detail}")
         return user_detail
 
     def get_mate_detail(self, key, name):
-        """Metoda vraci detail zvoleneho kamarada zavolanim GET /users.
+        """Metoda vraci detail vybraneho kamarada prihlaseneho uzivatele zavolanim GET /users.
 
         :param name: jmeno kamarada, pro nejz se vrati detail
         :param key: klic v python slovniku, ke kteremu se, v odpovedi z GET /users, vyhleda odpovidajici hodnota
@@ -41,24 +43,12 @@ class UserDetail:
         request_url = self.drq.get_request_url('${API_NAME}', '${TD_GET_MATE_DETAIL}')
         # send-request: z api ziska seznam pratel, vcetne vsech detailu, pomoci GET /users
         resp = self.api.send_request(request_method, request_url)
-        mates_list = resp.json()  # seznam pratel jako python slovnik
-        # check: v seznamu pratel najde kamarada se jmenem 'name' a k nemu vrati pozadovany detail 'key'
+        mates_list = resp.json()  # seznam pratel prihlaseneho uzivatele jako python slovnik
+        # check: v odpovedi z api overi existenci pozadovaneho klice 'key'
+        assert any(key in m for m in mates_list['results']), f'err-get-mate-detail: pozadovany klic "{key}" neexistuje'
+        # check: v seznamu pratel najde kamarada se jmenem 'name' a pokud existuje, vrati pozadovany detail 'key'
         mate_detail = [m[key] for m in mates_list['results'] if m['username'] == name]
         mate_detail = mate_detail[0] if mate_detail != [] else False
         assert mate_detail, f'err-get-mate-detail: {name} neni v seznamu pratel prihlaseneho uzivatele'
         self.logging.warning(f'get-mate-detail: detail kamarada {name}: {key} = {mate_detail}')
         return mate_detail
-
-    def _get_user_detail(self, key, resp_json):
-        """Metoda overi, jestli v odpovedi z GET /checkAuth existuje pozadovany klic, pokud ano vrati ho, pokud ne
-        vyhodi vyjimku.
-
-        :param key: klic v python slovniku, ke kteremu se, v odpovedi z GET /users, vyhleda odpovidajici hodnota
-        :param resp_json: odpoved z GET /users [dict]
-        """
-        try:
-            user_detail = resp_json['user'][key]
-        except KeyError:
-            self.logging.warning(f'err-get-user-detail: pozadovany klic "{key}" neexistuje v odpovedi z api')
-            raise
-        return user_detail

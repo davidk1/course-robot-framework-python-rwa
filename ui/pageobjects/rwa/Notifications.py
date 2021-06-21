@@ -14,7 +14,7 @@ class Notifications(BasePage):
     @capture_screenshot_on_failure
     def wait_for_notification_list(self):
         """Ceka na nacteni seznamu notifikaci"""
-        self.logger.console('\tcekam na nacteni seznamu upozorneni')
+        self.logger.console('  ..cekam na nacteni seznamu upozorneni')
         self.selib.wait_until_page_contains_element(self.notification_list, 15)
 
     @capture_screenshot_on_failure

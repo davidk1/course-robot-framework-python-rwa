@@ -1,5 +1,5 @@
 # testovaci data pro /login uzivatele Katharina_Bernier, pro jineho uzivatele je nutne data zmenit
-# ocekavany vysledek je slovnik s detaily prihlaseneho uzivatele a kontroluje se 1:1 s odpovedi z api
+# ocekavany vysledek je slovnik s detaily prihlaseneho uzivatele a krome "balance" se kontroluje 1:1 s odpovedi z api
 
 request_method = 'post'
 endpoint = 'login'

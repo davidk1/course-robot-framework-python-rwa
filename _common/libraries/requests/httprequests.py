@@ -29,7 +29,6 @@ class HTTPRequests(BaseHTTPRequests):
         allow_redirects = None
         builtin = self.factory.create_robot_builtin
         logging = self.factory.get_logging
-        requests = self.factory.get_requests
         session = builtin.get_variable_value('${SESSION_ID}')
         if kwargs:
             if 'headers' in kwargs.keys():
@@ -37,6 +36,8 @@ class HTTPRequests(BaseHTTPRequests):
             if 'allow_redirects' in kwargs.keys():
                 allow_redirects = kwargs['allow_redirects']
         try:
+            if method not in ('get', 'post', 'patch'):
+                raise ValueError(f'http metoda "{method}" neni implementovana')
             if method == 'get':
                 resp = session.get(url=url, headers=headers)
             if method == 'post':
@@ -44,7 +45,7 @@ class HTTPRequests(BaseHTTPRequests):
             if method == 'patch':
                 resp = session.patch(url=url, headers=headers, json=body)
             resp.raise_for_status()
-        except requests.ConnectionError as e:
-            logging.warning(f'Connection error, viz vyjimka: {e.args}')
+        except ValueError as e:
+            logging.error(f'{e.__doc__}')
             raise e
         return resp

@@ -21,6 +21,7 @@ class Notifications:
         request_url = self.drq.get_request_url('${API_NAME}', '${TD_GET_NOTIFS_LIST}')
         # send-request: vrati vsechny notifikace prihlaseneho uzivatele pomoci GET /notifications
         resp = self.api.send_request(request_method, request_url)
+        # check: overi, ze obsah odpovedi je validni JSON
         self.notif_dict = resp.json()
         self.logging.warning(f'get-notif-list: uzivatel ma: {len(self.notif_dict["results"])} notifikaci')
         return self.notif_dict
@@ -63,9 +64,9 @@ class Notifications:
         :param name: jmeno uvedene v notifikaci
         :param notif_dict: python slovnik s notifikacemi uzivatele: {results: [, ...]}
         """
-        assert len(notif_dict['results']) > 0, f'err-del-notif: uzivatel nema zadnou notifikaci, nejsou testovaci data.'
-        assert len(self._get_notif_list_one_name(name, notif_dict)) > 0, f'err-del-notif: uzivatel nema zadne ' \
-                                                                         f'notifikace od: {name}'
+        self.builtin.skip_if(len(notif_dict['results']) == 0, 'err-del-notif: uzivatel nema zadnou notifikaci')
+        self.builtin.skip_if(len(self._get_notif_list_one_name(name, notif_dict)) == 0, f'err-del-notif: uzivatel nema '
+                                                                                        f'zadnou notifikaci od: {name}')
 
     @staticmethod
     def _get_notif_list_one_name(name, notif_dict):
@@ -120,7 +121,7 @@ class Notifications:
 
     def _get_notif_dict(self):
         """Metoda vraci python slovnik s notifikacemi uzivatele. Nejdrive se pokusi vratit slovnik ulozeny v ramci
-        volani KW 'get notifications list', se tento KW nezavolal, vygeneruje novy.
+        volani KW 'get notifications list'. Pokud tento neexistuje, vygeneruje se novy.
         """
         if self.notif_dict:
             self.logging.warning(f"del-notif: slovnik 'notif_dict' byl ulozen v ramci KW 'get notifications list'")
