@@ -5,13 +5,3 @@ login_data = {
     "password": "s3cret",
 }
 
-transaction_data = {
-    "recipient": "Edgar Johns",
-    "amount": 12,
-    "description": "Vracim dluh"
-}
-
-notification_data = {
-    "related_user": "Edgar Johns",
-    "related_action": "received"
-}

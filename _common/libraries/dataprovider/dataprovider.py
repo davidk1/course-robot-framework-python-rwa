@@ -4,30 +4,33 @@ URLS = "_common.libraries.datasource.urls"    # cesta k modulu s konfiguraci bas
 
 
 def get_var(test_data_path, var):
-    """Metoda vraci obsah promenne ulozeny v souboru s testovacimi daty.
+    """Metoda vraci obsah konkretni promenne z python modulu s testovacimi daty.
 
     :param test_data_path: absolutni cesta k souboru s testovacimi daty (zapis pomoci teckove notace)
     :param var: nazev promenne, jejiz obsah se vrati ze souboru s testovacimi daty
     """
-    test_data_module = importlib.import_module(test_data_path)
+    try:
+        test_data_module = importlib.import_module(test_data_path)
+    except ImportError:
+        raise ImportError(f'Modul s testovacimi daty {test_data_path} bud neexistuje anebo neni v python search path.')
     var = getattr(test_data_module, var)
     return var
 
 
 def get_base_url(name):
-    """Metoda vraci base URL pro vybranou alikaci.
+    """Metoda vraci base URL pro vybranou aplikaci / api z python modulu s testovacimi daty.
 
     :param name: nazev aplikace
     """
     return get_var(URLS, 'baseurls')[name]
 
 
-def get_api_url(name, service_name):
-    """Metoda vraci URL pro vybrane api.
+def get_api_url(api_name, endpoint):
+    """Metoda vraci URL pro vybrane api z python modulu s testovacimi daty.
 
-    :param name: nazev api
-    :param service_name: nazev sluzby, pro kterou se vyhleda endpoint
+    :param api_name: nazev api
+    :param endpoint: nazev sluzby
     """
-    baseurl = get_base_url(name)
-    endpoint = get_var(URLS, 'endpoints')[name][service_name]
+    baseurl = get_base_url(api_name)
+    endpoint = get_var(URLS, 'endpoints')[api_name][endpoint]
     return baseurl + endpoint
