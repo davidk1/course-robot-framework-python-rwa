@@ -3,8 +3,9 @@ Implementation of real test automation framework including examples of validatin
 
 ## Installation prerequisities
 - install python >= 3.6
-- install chrome-driver version supporting your chrome-browser version: https://chromedriver.chromium.org/downloads
+- install chrome-driver version supporting your chrome browser version: https://chromedriver.chromium.org/downloads
 - include the chrome-driver location in your PATH environment variable
+- do the previous two bullets for firefox browser, geckodriver can be downloaded from: https://github.com/mozilla/geckodriver/releases
 - install realworld-app: https://github.com/cypress-io/cypress-realworld-app
 - clone the repository: 
 ```bash
@@ -19,12 +20,12 @@ pip install -r requirements.txt
 ## Run tests
 ui: 
 ```bash
-from cmd line cd to: ./ui/testsuites/rwa/tests/
+from the root of the project cd to: ./ui/testsuites/rwa/tests/
 run: python -m robot rwa_smoke.robot
 ```
 
 api:
 ```bash
-from cmd line cd to: ./api/testsuites/rwa/tests/
+from the root of the project cd to: ./api/testsuites/rwa/tests/
 run: python -m robot rwa_api_smoke.robot
 ```
