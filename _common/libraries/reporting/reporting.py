@@ -23,6 +23,13 @@ config = {
             "borderColor": "rgb(54, 162, 235)",
             "borderWidth": 1,
             "data": []
+          },
+         {
+            "label": "Skip",
+            "backgroundColor": "rgba(240, 255, 0, 1)",
+            "borderColor": "rgb(240, 255, 0)",
+            "borderWidth": 1,
+            "data": []
           }
         ]
       },
@@ -39,16 +46,39 @@ config = {
     }
 
 
-def report_results(cfg):
+def report_results(test_names, test_statuses):
     """ Zjednoduseny priklad volani reportingoveho nastroje v cloudu. Metoda vygeneruje URL a QR kod reportu s vysledky
         posledniho behu vsech testu v testovaci sade. Reportovaci nastroj zobrazi vzdy jen posledni beh, neda se nad
         tim stavet zadna analytika, k tomu slouzi jine nastroje. Priklad vyuziva Python knihovnu pro generovani
         statickych reportu -> https://quickchart.io/
     """
-    qc.config = cfg
+    qc.config = _prepare_cfg_for_reporting_tool(test_names, test_statuses)
     chart_url = qc.get_url()    # vygeneruje url statickeho reportu
     chart_qr_code = f'https://quickchart.io/qr?text={chart_url}&size=250'
     # URL reportu
     logging.warning(f'reporting-url: {chart_url}')
     # QR kod reportu
     logging.warning(f'reporting-qr-kod: {chart_qr_code}')
+
+
+def _prepare_cfg_for_reporting_tool(test_names, test_statuses):
+    """Metoda vraci upravenou vychozi konfiguraci reportingoveho nastroje doplnenou o nazvy a stavy vsech
+    spustenych testu.
+    """
+    cfg = config    # nacte vychozi(default) konfiguraci reportovaciho nastroje
+    # ve vychozi(default) konfiguraci upravi jmena testu a jejich stavy (PASS / FAIL)
+    for i in range(len(test_names)):
+        cfg['data']['labels'].append(test_names[i])
+        if test_statuses[i] == 'FAIL':
+            cfg['data']['datasets'][0]['data'].append(1)
+            cfg['data']['datasets'][1]['data'].append(0)
+            cfg['data']['datasets'][2]['data'].append(0)
+        elif test_statuses[i] == 'PASS':
+            cfg['data']['datasets'][1]['data'].append(1)
+            cfg['data']['datasets'][0]['data'].append(0)
+            cfg['data']['datasets'][2]['data'].append(0)
+        else:
+            cfg['data']['datasets'][1]['data'].append(0)
+            cfg['data']['datasets'][0]['data'].append(0)
+            cfg['data']['datasets'][2]['data'].append(1)
+    return cfg
