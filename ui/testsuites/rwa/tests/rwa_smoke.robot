@@ -4,6 +4,7 @@ Documentation    Zakladni testy aplikace Real World Application
 Library    ../../../../_common/
 Resource    ../../../keywords/_common/browser.resource
 Resource    ../../../keywords/rwa/auth.resource
+Resource    ../../../keywords/rwa/transactions.resource
 
 
 Suite Setup    open browser to application    rwa    ${browser}
@@ -23,3 +24,16 @@ Successful login to application
     [Tags]    login
     login to rwa    ${login_data}[username]    ${login_data}[password]
     logout from rwa
+
+Send money to recipient
+    [Documentation]     Odeslani platby
+    [Tags]      smoke  trans
+    [Setup]     login to rwa
+    # nactu a ulozim aktualni hodnotu stavu uctu
+    get actual account balance
+    send money    ${transaction_data}[recipient]    ${transaction_data}[amount]    ${transaction_data}[description]
+    #check account balance change
+    #pokud bude cas a kapacita, muzeme overit, ze to na druhou stranu prislo.
+    [Teardown]  logout from rwa
+
+
