@@ -61,3 +61,4 @@ Check account balance change
     ...    konecny zustatek: ${actual_account_balance},
     ...    ocekavana zmena zustatku (pohyb na uctu): ${expected_balance_change}.
     fail    ${err_message}
+
