@@ -1,56 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 4.0.2 (Python 3.9.2 on win32)" generated="20210623 13:54:09.420" rpa="false" schemaversion="2">
+<robot generator="Robot 4.0.2 (Python 3.9.2 on win32)" generated="20210623 15:00:07.784" rpa="false" schemaversion="2">
 <suite id="s1" name="Rwa Api Smoke" source="C:\course-robot-framework-python-rwa\api\testsuites\rwa\tests\rwa_api_smoke.robot">
 <kw name="Setup" library="SuiteMgmt" type="SETUP">
 <doc>KW ulozi aktivni session pro vsechna volani rwa api a prihlasi uzivatele do aplikace rwa.</doc>
-<msg timestamp="20210623 13:54:09.639" level="INFO">${SESSION_ID} = &lt;requests.sessions.Session object at 0x000001F70DE1AB80&gt;</msg>
-<msg timestamp="20210623 13:54:09.780" level="WARN">login: doslo k uspesnemu prihlaseni uzivatele: Katharina_Bernier</msg>
-<msg timestamp="20210623 13:54:09.780" level="WARN">login: session cookie connect.sid = s%3AxGjNqtvw7nahvZ-HLefxVLSFgJJQyULF.j8MamMl%2FSlcr0dyFaEwzauAbfFqfrmRod7idxoIsjCs</msg>
-<status status="PASS" starttime="20210623 13:54:09.639" endtime="20210623 13:54:09.780"/>
+<msg timestamp="20210623 15:00:07.972" level="INFO">${SESSION_ID} = &lt;requests.sessions.Session object at 0x000001B20C2A7C10&gt;</msg>
+<msg timestamp="20210623 15:00:08.097" level="WARN">login: doslo k uspesnemu prihlaseni uzivatele: Katharina_Bernier</msg>
+<msg timestamp="20210623 15:00:08.097" level="WARN">login: session cookie connect.sid = s%3AMRJpcBRmQpOaw1mi8Iys21ugkbXNn56m.arA%2Fxvq3MVyiGn9Exgp0MEKHm7HZCHp0eprAp3K5fy0</msg>
+<status status="PASS" starttime="20210623 15:00:07.972" endtime="20210623 15:00:08.097"/>
 </kw>
-<test id="s1-t1" name="Get notification list">
-<kw name="Get Notifications List" library="Notifications">
-<doc>key word vraci python slovnik se vsemi notifikacemi
-prihlaseneho uzivatele pomoci GET / notifications</doc>
-<msg timestamp="20210623 13:54:09.780" level="WARN">uzivatel ma : 16 notifikaci</msg>
-<status status="PASS" starttime="20210623 13:54:09.780" endtime="20210623 13:54:09.780"/>
+<test id="s1-t1" name="Get bank account">
+<kw name="Get Bank Account" library="BankAccounts">
+<doc>Keyword overi detaily bankovniho uctu prihlaseneho uzivatele</doc>
+<msg timestamp="20210623 15:00:08.113" level="WARN">get-bank-acc dtaily uctu z api jsou shodne s ocekavanym vysledkem</msg>
+<status status="PASS" starttime="20210623 15:00:08.097" endtime="20210623 15:00:08.113"/>
 </kw>
-<doc>Test vrati seznam vsech notifikaci</doc>
+<doc>Overi stav uctu bankovniho uzivatele</doc>
+<tag>account</tag>
 <tag>priority_1</tag>
-<tag>seznam_notifikaci</tag>
-<tag>smoke</tag>
-<status status="PASS" starttime="20210623 13:54:09.780" endtime="20210623 13:54:09.795"/>
+<status status="PASS" starttime="20210623 15:00:08.097" endtime="20210623 15:00:08.113"/>
 </test>
 <kw name="Teardown" library="SuiteMgmt" type="TEARDOWN">
 <doc>KW odhlasi prihlaseneho uzivatele z aplikace rwa a ukonci aktivni session.</doc>
-<msg timestamp="20210623 13:54:09.795" level="WARN">logout: doslo k uspesnemu odhlaseni uzivatele</msg>
-<status status="PASS" starttime="20210623 13:54:09.795" endtime="20210623 13:54:09.795"/>
+<msg timestamp="20210623 15:00:08.128" level="WARN">logout: doslo k uspesnemu odhlaseni uzivatele</msg>
+<status status="PASS" starttime="20210623 15:00:08.113" endtime="20210623 15:00:08.128"/>
 </kw>
 <doc>Testovaci sada obsahuje vybrane testy pro validaci sluzeb rwa api. Pro prihlaseni do aplikace se
 pouziva vychozi uzivatel: Katharina_Bernier</doc>
-<status status="PASS" starttime="20210623 13:54:09.452" endtime="20210623 13:54:09.795"/>
+<status status="PASS" starttime="20210623 15:00:07.784" endtime="20210623 15:00:08.128"/>
 </suite>
 <statistics>
 <total>
 <stat pass="1" fail="0" skip="0">All Tests</stat>
 </total>
 <tag>
+<stat pass="1" fail="0" skip="0">account</stat>
 <stat pass="1" fail="0" skip="0">priority_1</stat>
-<stat pass="1" fail="0" skip="0">seznam_notifikaci</stat>
-<stat pass="1" fail="0" skip="0">smoke</stat>
 </tag>
 <suite>
 <stat pass="1" fail="0" skip="0" id="s1" name="Rwa Api Smoke">Rwa Api Smoke</stat>
 </suite>
 </statistics>
 <errors>
-<msg timestamp="20210623 13:54:09.436" level="WARN">Argumenty listeneru: ()
-</msg>
-<msg timestamp="20210623 13:54:09.780" level="WARN">login: doslo k uspesnemu prihlaseni uzivatele: Katharina_Bernier</msg>
-<msg timestamp="20210623 13:54:09.780" level="WARN">login: session cookie connect.sid = s%3AxGjNqtvw7nahvZ-HLefxVLSFgJJQyULF.j8MamMl%2FSlcr0dyFaEwzauAbfFqfrmRod7idxoIsjCs</msg>
-<msg timestamp="20210623 13:54:09.780" level="WARN">uzivatel ma : 16 notifikaci</msg>
-<msg timestamp="20210623 13:54:09.795" level="WARN">logout: doslo k uspesnemu odhlaseni uzivatele</msg>
-<msg timestamp="20210623 13:54:09.795" level="WARN">reporting-url: https://quickchart.io/chart?c=%7B%22type%22%3A+%22bar%22%2C+%22data%22%3A+%7B%22labels%22%3A+%5B%22Get+notification+list%22%5D%2C+%22datasets%22%3A+%5B%7B%22label%22%3A+%22Fail%22%2C+%22backgroundColor%22%3A+%22rgba%28255%2C+99%2C+132%2C+0.5%29%22%2C+%22borderColor%22%3A+%22rgb%28255%2C+99%2C+132%29%22%2C+%22borderWidth%22%3A+1%2C+%22data%22%3A+%5B0%5D%7D%2C+%7B%22label%22%3A+%22Pass%22%2C+%22backgroundColor%22%3A+%22rgba%2854%2C+162%2C+235%2C+0.5%29%22%2C+%22borderColor%22%3A+%22rgb%2854%2C+162%2C+235%29%22%2C+%22borderWidth%22%3A+1%2C+%22data%22%3A+%5B1%5D%7D%2C+%7B%22label%22%3A+%22Skip%22%2C+%22backgroundColor%22%3A+%22rgba%28240%2C+255%2C+0%2C+1%29%22%2C+%22borderColor%22%3A+%22rgb%28240%2C+255%2C+0%29%22%2C+%22borderWidth%22%3A+1%2C+%22data%22%3A+%5B0%5D%7D%5D%7D%2C+%22options%22%3A+%7B%22responsive%22%3A+true%2C+%22legend%22%3A+%7B%22position%22%3A+%22top%22%7D%2C+%22title%22%3A+%7B%22display%22%3A+true%2C+%22text%22%3A+%22Automatizace+aplikace+RWA+pomoci+robot+framework%2C+python+a+selenium%22%7D%7D%7D&amp;w=500&amp;h=300&amp;bkg=%23ffffff&amp;devicePixelRatio=2.0&amp;f=png</msg>
-<msg timestamp="20210623 13:54:09.795" level="WARN">reporting-qr-kod: https://quickchart.io/qr?text=https://quickchart.io/chart?c=%7B%22type%22%3A+%22bar%22%2C+%22data%22%3A+%7B%22labels%22%3A+%5B%22Get+notification+list%22%5D%2C+%22datasets%22%3A+%5B%7B%22label%22%3A+%22Fail%22%2C+%22backgroundColor%22%3A+%22rgba%28255%2C+99%2C+132%2C+0.5%29%22%2C+%22borderColor%22%3A+%22rgb%28255%2C+99%2C+132%29%22%2C+%22borderWidth%22%3A+1%2C+%22data%22%3A+%5B0%5D%7D%2C+%7B%22label%22%3A+%22Pass%22%2C+%22backgroundColor%22%3A+%22rgba%2854%2C+162%2C+235%2C+0.5%29%22%2C+%22borderColor%22%3A+%22rgb%2854%2C+162%2C+235%29%22%2C+%22borderWidth%22%3A+1%2C+%22data%22%3A+%5B1%5D%7D%2C+%7B%22label%22%3A+%22Skip%22%2C+%22backgroundColor%22%3A+%22rgba%28240%2C+255%2C+0%2C+1%29%22%2C+%22borderColor%22%3A+%22rgb%28240%2C+255%2C+0%29%22%2C+%22borderWidth%22%3A+1%2C+%22data%22%3A+%5B0%5D%7D%5D%7D%2C+%22options%22%3A+%7B%22responsive%22%3A+true%2C+%22legend%22%3A+%7B%22position%22%3A+%22top%22%7D%2C+%22title%22%3A+%7B%22display%22%3A+true%2C+%22text%22%3A+%22Automatizace+aplikace+RWA+pomoci+robot+framework%2C+python+a+selenium%22%7D%7D%7D&amp;w=500&amp;h=300&amp;bkg=%23ffffff&amp;devicePixelRatio=2.0&amp;f=png&amp;size=250</msg>
+<msg timestamp="20210623 15:00:08.097" level="WARN">login: doslo k uspesnemu prihlaseni uzivatele: Katharina_Bernier</msg>
+<msg timestamp="20210623 15:00:08.097" level="WARN">login: session cookie connect.sid = s%3AMRJpcBRmQpOaw1mi8Iys21ugkbXNn56m.arA%2Fxvq3MVyiGn9Exgp0MEKHm7HZCHp0eprAp3K5fy0</msg>
+<msg timestamp="20210623 15:00:08.113" level="WARN">get-bank-acc dtaily uctu z api jsou shodne s ocekavanym vysledkem</msg>
+<msg timestamp="20210623 15:00:08.128" level="WARN">logout: doslo k uspesnemu odhlaseni uzivatele</msg>
 </errors>
 </robot>

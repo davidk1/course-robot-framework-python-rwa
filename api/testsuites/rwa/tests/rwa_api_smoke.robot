@@ -5,7 +5,7 @@ Documentation    Testovaci sada obsahuje vybrane testy pro validaci sluzeb rwa a
 Library    ../../../../_common/
 Library    ../../../keywords/rwa/SuiteMgmt.py
 Library    ../../../keywords/rwa/Notifications.py
-
+Library    ../../../keywords/rwa/BankAccounts.py
 
 Suite Setup       setup
 Suite Teardown    teardown
@@ -16,9 +16,15 @@ ${API_NAME}              rwa_api
 ${TD_LOGIN_TO_RWA}       api.testsuites.rwa.testdata.td_login_to_rwa
 ${TD_LOGOUT_FROM_RWA}    api.testsuites.rwa.testdata.td_logout_from_rwa
 ${TD_GET_NOTIFS_LIST}    api.testsuites.rwa.testdata.td_get_notifs_list
+${TD_GET_BANK_ACC}       api.testsuites.rwa.testdata.td_get_bank_acc
 
 *** Test Cases ***
 Get notification list
         [Documentation]  Test vrati seznam vsech notifikaci
         [Tags]  smoke  seznam_notifikaci  priority_1
         get notifications list
+
+Get bank account
+    [Documentation]  Overi stav uctu bankovniho uzivatele
+    [Tags]  account    priority_1
+    get bank account
