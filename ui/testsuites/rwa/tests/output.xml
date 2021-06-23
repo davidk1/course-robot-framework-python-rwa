@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 4.0.2 (Python 3.9.2 on win32)" generated="20210623 07:59:15.822" rpa="false" schemaversion="2">
+<suite id="s1" name="Rwa Smoke" source="C:\course-robot-framework-python-rwa\ui\testsuites\rwa\tests\rwa_smoke.robot">
+<kw name="Open browser to application" library="browser" type="SETUP">
+<arg>rwa</arg>
+<arg>${browser}</arg>
+<doc>Otevre prohlizec na strance dane aplikace</doc>
+<kw name="Log To Console" library="BuiltIn">
+<arg>Otevreni prohlizece ${browser} na strance aplikace ${application_name}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20210623 07:59:16.119" endtime="20210623 07:59:16.119"/>
+</kw>
+<kw name="Get Base Url" library="dataprovider">
+<var>${url}</var>
+<arg>${application_name}</arg>
+<doc>Metoda vraci base URL pro vybranou aplikaci / api z python modulu s testovacimi daty.</doc>
+<msg timestamp="20210623 07:59:16.119" level="INFO">${url} = http://localhost:3000</msg>
+<status status="PASS" starttime="20210623 07:59:16.119" endtime="20210623 07:59:16.119"/>
+</kw>
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>${url}</arg>
+<arg>browser=${browser}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20210623 07:59:16.119" level="INFO">Opening browser 'ff' to base url 'http://localhost:3000'.</msg>
+<msg timestamp="20210623 07:59:16.119" level="INFO">Firefox driver log is always forced to to: C:\course-robot-framework-python-rwa\ui\testsuites\rwa\tests\geckodriver-20.log</msg>
+<status status="PASS" starttime="20210623 07:59:16.119" endtime="20210623 07:59:23.703"/>
+</kw>
+<kw name="Maximize Browser Window" library="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" starttime="20210623 07:59:23.703" endtime="20210623 07:59:23.703"/>
+</kw>
+<kw name="Set Selenium Speed" library="SeleniumLibrary">
+<arg>${selenium_command_delay}</arg>
+<doc>Sets the delay that is waited after each Selenium command.</doc>
+<status status="PASS" starttime="20210623 07:59:23.703" endtime="20210623 07:59:23.703"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>Prohlizec otevren - OK</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20210623 07:59:23.703" endtime="20210623 07:59:23.703"/>
+</kw>
+<status status="PASS" starttime="20210623 07:59:16.119" endtime="20210623 07:59:23.703"/>
+</kw>
+<test id="s1-t1" name="Delete notifications">
+<kw name="Login to rwa" library="auth" type="SETUP">
+<doc>Prihlasi se do aplikace rwa</doc>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${\n}Prihlaseni se do aplikace rwa</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20210623 07:59:23.703" endtime="20210623 07:59:23.703"/>
+</kw>
+<kw name="Enter Username" library="LoginPage">
+<arg>${username}</arg>
+<doc>Vlozi text do pole `Username`.</doc>
+<msg timestamp="20210623 07:59:25.604" level="INFO">Clicking element 'username'.</msg>
+<msg timestamp="20210623 07:59:27.401" level="INFO">Sending key(s) ('Jessyca.Kuhic',) to page.</msg>
+<msg timestamp="20210623 07:59:27.401" level="INFO">Sending keys Jessyca.Kuhic</msg>
+<status status="PASS" starttime="20210623 07:59:23.703" endtime="20210623 07:59:27.995"/>
+</kw>
+<kw name="Enter Password" library="LoginPage">
+<arg>${password}</arg>
+<doc>Vlozi zadany text do pole `Password`.</doc>
+<msg timestamp="20210623 07:59:29.886" level="INFO">Clicking element 'password'.</msg>
+<msg timestamp="20210623 07:59:31.714" level="INFO">Sending key(s) ('s3cret',) to page.</msg>
+<msg timestamp="20210623 07:59:31.714" level="INFO">Sending keys s3cret</msg>
+<status status="PASS" starttime="20210623 07:59:27.995" endtime="20210623 07:59:32.186"/>
+</kw>
+<kw name="Click Sign In Button" library="LoginPage">
+<doc>Stiskne tlacitko `SIGN IN`.</doc>
+<msg timestamp="20210623 07:59:34.105" level="INFO">Clicking element 'css:[data-test=signin-submit]'.</msg>
+<status status="PASS" starttime="20210623 07:59:32.186" endtime="20210623 07:59:35.055"/>
+</kw>
+<kw name="Wait For Logout Button" library="SideNavBar">
+<doc>Pocka na zobrazeni tlacitka Logout.</doc>
+<status status="PASS" starttime="20210623 07:59:35.055" endtime="20210623 07:59:37.410"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>Prihlaseni se do aplikace rwa probehlo uspesne - OK</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20210623 07:59:37.410" endtime="20210623 07:59:37.410"/>
+</kw>
+<status status="PASS" starttime="20210623 07:59:23.703" endtime="20210623 07:59:37.410"/>
+</kw>
+<kw name="Open menu notifications" library="notifications">
+<doc>Klikne na polozku Notifications v levem menu aplikace</doc>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${\n}Otevirani menu Notifications</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20210623 07:59:37.412" endtime="20210623 07:59:37.412"/>
+</kw>
+<kw name="Click Menu Notifications" library="SideNavBar">
+<doc>Stiskne polozku `Notifications` v nabidce menu</doc>
+<msg timestamp="20210623 07:59:39.277" level="INFO">Clicking element 'css:[data-test=sidenav-notifications]'.</msg>
+<status status="PASS" starttime="20210623 07:59:37.412" endtime="20210623 07:59:40.246"/>
+</kw>
+<kw name="Wait For Notification List" library="Notifications">
+<doc>Ceka na nacteni seznamu notifikaci</doc>
+<status status="PASS" starttime="20210623 07:59:40.246" endtime="20210623 07:59:40.558"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>Otevreno menu Notifications - OK</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20210623 07:59:40.558" endtime="20210623 07:59:40.558"/>
+</kw>
+<status status="PASS" starttime="20210623 07:59:37.410" endtime="20210623 07:59:40.558"/>
+</kw>
+<kw name="Delete notifications" library="notifications">
+<arg>${notification_data}[user]</arg>
+<arg>${notification_data}[action]</arg>
+<doc>Vymaze postupne vsechna upozorneni ktera se tykaji daneho uzivatele {user} a dane akce {action}
+lze filtrovat podle uzivatele, akce, kombinace nebo smazat vsechna upozorneni (v pripade prednastavenych
+vstupnich parametru - prazdych retezcu)</doc>
+<kw name="Set Variable" library="BuiltIn">
+<var>${message}</var>
+<arg>Mazani upozorneni</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20210623 07:59:40.558" level="INFO">${message} = Mazani upozorneni</msg>
+<status status="PASS" starttime="20210623 07:59:40.558" endtime="20210623 07:59:40.558"/>
+</kw>
+<kw name="Set Variable If" library="BuiltIn">
+<var>${message}</var>
+<arg>'${user}'!='${EMPTY}'</arg>
+<arg>${message} pro uzivatele "${user}"</arg>
+<arg>${message}</arg>
+<doc>Sets variable based on the given condition.</doc>
+<msg timestamp="20210623 07:59:40.558" level="INFO">${message} = Mazani upozorneni pro uzivatele "Edgar Johns"</msg>
+<status status="PASS" starttime="20210623 07:59:40.558" endtime="20210623 07:59:40.558"/>
+</kw>
+<kw name="Set Variable If" library="BuiltIn">
+<var>${message}</var>
+<arg>'${action}'!='${EMPTY}'</arg>
+<arg>${message} pro akci "${action}"</arg>
+<arg>${message}</arg>
+<doc>Sets variable based on the given condition.</doc>
+<msg timestamp="20210623 07:59:40.558" level="INFO">${message} = Mazani upozorneni pro uzivatele "Edgar Johns" pro akci "received"</msg>
+<status status="PASS" starttime="20210623 07:59:40.558" endtime="20210623 07:59:40.558"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${\n}${message}.</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20210623 07:59:40.558" endtime="20210623 07:59:40.558"/>
+</kw>
+<for flavor="IN RANGE">
+<var>${index}</var>
+<value>${max_number_to_delete}</value>
+<iter>
+<var name="${index}">0</var>
+<kw name="Wait For Notification List" library="Notifications">
+<doc>Ceka na nacteni seznamu notifikaci</doc>
+<status status="PASS" starttime="20210623 07:59:40.558" endtime="20210623 07:59:40.871"/>
+</kw>
+<kw name="Click Notification Dismiss Button" library="Notifications">
+<var>${response}</var>
+<arg>${user}</arg>
+<arg>${action}</arg>
+<doc>Stiskne tlacitko `DISMISS` pro upozoreni obsahujici daneho uzivatele a danou akci</doc>
+<msg timestamp="20210623 07:59:44.008" level="INFO">Clicking element '//li[@data-test='notification-list-item-FAuf2ezi_mqm']/button'.</msg>
+<msg timestamp="20210623 07:59:44.909" level="INFO">${response} = Edgar Johns received payment.</msg>
+<status status="PASS" starttime="20210623 07:59:40.871" endtime="20210623 07:59:44.909"/>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<arg>'${response}' == 'None'</arg>
+<arg>run keywords</arg>
+<arg>log to console</arg>
+<arg>Pocet odstranenych upozorneni: ${index}</arg>
+<arg>AND</arg>
+<arg>exit for loop</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" starttime="20210623 07:59:44.909" endtime="20210623 07:59:44.909"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${SPACE} ..Bylo smazano upozorneni "${response}"</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20210623 07:59:44.909" endtime="20210623 07:59:44.909"/>
+</kw>
+<status status="PASS" starttime="20210623 07:59:40.558" endtime="20210623 07:59:44.909"/>
+</iter>
+<iter>
+<var name="${index}">1</var>
+<kw name="Wait For Notification List" library="Notifications">
+<doc>Ceka na nacteni seznamu notifikaci</doc>
+<status status="PASS" starttime="20210623 07:59:44.909" endtime="20210623 07:59:45.215"/>
+</kw>
+<kw name="Click Notification Dismiss Button" library="Notifications">
+<var>${response}</var>
+<arg>${user}</arg>
+<arg>${action}</arg>
+<doc>Stiskne tlacitko `DISMISS` pro upozoreni obsahujici daneho uzivatele a danou akci</doc>
+<msg timestamp="20210623 07:59:45.527" level="INFO">${response} = None</msg>
+<status status="PASS" starttime="20210623 07:59:45.215" endtime="20210623 07:59:45.527"/>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<arg>'${response}' == 'None'</arg>
+<arg>run keywords</arg>
+<arg>log to console</arg>
+<arg>Pocet odstranenych upozorneni: ${index}</arg>
+<arg>AND</arg>
+<arg>exit for loop</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<kw name="Run Keywords" library="BuiltIn">
+<arg>log to console</arg>
+<arg>Pocet odstranenych upozorneni: ${index}</arg>
+<arg>AND</arg>
+<arg>exit for loop</arg>
+<doc>Executes all the given keywords in a sequence.</doc>
+<kw name="Log To Console" library="BuiltIn">
+<arg>Pocet odstranenych upozorneni: ${index}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20210623 07:59:45.527" endtime="20210623 07:59:45.527"/>
+</kw>
+<kw name="Exit For Loop" library="BuiltIn">
+<doc>Stops executing the enclosing for loop.</doc>
+<msg timestamp="20210623 07:59:45.527" level="INFO">Exiting for loop altogether.</msg>
+<status status="PASS" starttime="20210623 07:59:45.527" endtime="20210623 07:59:45.527"/>
+</kw>
+<status status="PASS" starttime="20210623 07:59:45.527" endtime="20210623 07:59:45.527"/>
+</kw>
+<status status="PASS" starttime="20210623 07:59:45.527" endtime="20210623 07:59:45.527"/>
+</kw>
+<status status="PASS" starttime="20210623 07:59:44.909" endtime="20210623 07:59:45.527"/>
+</iter>
+<status status="PASS" starttime="20210623 07:59:40.558" endtime="20210623 07:59:45.527"/>
+</for>
+<status status="PASS" starttime="20210623 07:59:40.558" endtime="20210623 07:59:45.527"/>
+</kw>
+<kw name="Logout from rwa" library="auth" type="TEARDOWN">
+<doc>Odhlasi se z aplikace rwa</doc>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${\n}Odhlaseni z aplikace rwa</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20210623 07:59:45.527" endtime="20210623 07:59:45.527"/>
+</kw>
+<kw name="Click Logout Button" library="SideNavBar">
+<doc>Stiskne tlacitko `Logout` pro odhlaseni z aplikace</doc>
+<msg timestamp="20210623 07:59:47.434" level="INFO">Clicking element 'css:[data-test=sidenav-signout]'.</msg>
+<status status="PASS" starttime="20210623 07:59:45.527" endtime="20210623 07:59:48.303"/>
+</kw>
+<kw name="Wait For Sign In Button" library="LoginPage">
+<doc>Pocka na zobrazeni tlacitka SIGN IN</doc>
+<status status="PASS" starttime="20210623 07:59:48.303" endtime="20210623 07:59:50.184"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>Odhlaseni z aplikace rwa probehlo uspesne - OK</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20210623 07:59:50.184" endtime="20210623 07:59:50.184"/>
+</kw>
+<status status="PASS" starttime="20210623 07:59:45.527" endtime="20210623 07:59:50.184"/>
+</kw>
+<doc>smaze upozorneni</doc>
+<tag>smaze</tag>
+<status status="PASS" starttime="20210623 07:59:23.703" endtime="20210623 07:59:50.184"/>
+</test>
+<kw name="Close All Browsers" library="SeleniumLibrary" type="TEARDOWN">
+<doc>Closes all open browsers and resets the browser cache.</doc>
+<status status="PASS" starttime="20210623 07:59:50.184" endtime="20210623 07:59:51.387"/>
+</kw>
+<doc>Zakladni testy aplikace Real World Application</doc>
+<status status="PASS" starttime="20210623 07:59:15.822" endtime="20210623 07:59:51.387"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+<stat pass="1" fail="0" skip="0">smaze</stat>
+</tag>
+<suite>
+<stat pass="1" fail="0" skip="0" id="s1" name="Rwa Smoke">Rwa Smoke</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
