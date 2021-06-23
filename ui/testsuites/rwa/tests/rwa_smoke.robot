@@ -33,5 +33,5 @@ Send money to recipient
     get actual account balance
     send money    ${transaction_data}[recipient]    ${transaction_data}[amount]    ${transaction_data}[description]
     #check account balance change
-    # pokud bude cas tak overit to ze se prachy pripsaly
+    # pokud bude cas tak overit to ze se penize pripsaly
     [Teardown]    logout from rwa
