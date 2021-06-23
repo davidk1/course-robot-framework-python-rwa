@@ -1,6 +1,8 @@
 from PageObjectLibrary import PageObject
 
 
+
+
 class BasePage(PageObject):
     """Trida pro praci s page objects"""
 
