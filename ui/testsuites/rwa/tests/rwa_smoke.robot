@@ -5,6 +5,7 @@ Library    ../../../../_common/
 Resource    ../../../keywords/_common/browser.resource
 Resource    ../../../keywords/rwa/auth.resource
 Resource    ../../../keywords/rwa/transactions.resource
+Resource    ../../../keywords/rwa/notifications.resource
 
 
 Suite Setup    open browser to application    rwa    ${browser}
@@ -27,9 +28,18 @@ Successful login to application
 
 Send money to recipient
   [Documentation]  Send money to account of some recipient
-  [Tags]  Area : payments, Priority : High
+  [Tags]  payments
   [Setup]  login to rwa
   get actual account balance    # Nactu aktualni stav uctu a ulozim do promenne
   send money   ${transaction_data}[recipient]  ${transaction_data}[amount]  ${transaction_data}[description]
-  #check account balance change   # Porovnam puvodni stav s aktualnim a odeslanymi penezi, musi platit puvodni = novy + send
+  check account balance change   # Porovnam puvodni stav s aktualnim a odeslanymi penezi, musi platit puvodni = novy + send
   [Teardown]  logout from rwa
+
+
+Delete notifications
+    [Documentation]  smaze upozorneni
+    [Tags]  smaze
+    [Setup]  login to rwa
+    open menu notifications
+    delete notifications  ${notification_data}[user]  ${notification_data}[action]
+    [Teardown]  logout from rwa

@@ -7,6 +7,12 @@ login_data = {
 
 transaction_data = {
 "recipient": "Edgar Johns",
-"amount": 30,
-"description": "Vracim dluh"
+"amount": 1,
+"description": "Kvasna vraci dluh"
+}
+
+
+notification_data = {
+    "user":  "Edgar Johns",
+    "action": "received"
 }
