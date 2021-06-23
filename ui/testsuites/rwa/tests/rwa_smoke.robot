@@ -5,6 +5,7 @@ Library    ../../../../_common/
 Resource    ../../../keywords/_common/browser.resource
 Resource    ../../../keywords/rwa/auth.resource
 Resource    ../../../keywords/rwa/transactions.resource
+Resource    ../../../keywords/rwa/notifications.resource
 
 
 Suite Setup    open browser to application    rwa    ${browser}
@@ -32,8 +33,14 @@ Send money to recipient
     # nactu a ulozim aktualni hodnotu stavu uctu
     get actual account balance
     send money    ${transaction_data}[recipient]    ${transaction_data}[amount]    ${transaction_data}[description]
-    #check account balance change
+    check account balance change
     #pokud bude cas a kapacita, muzeme overit, ze to na druhou stranu prislo.
     [Teardown]  logout from rwa
 
-
+Delete notifications
+    [Documentation]  Smaze upozorneni
+    [Tags]  notif
+    [Setup]  login to rwa
+    open menu notifications
+    delete notifications    ${notification_data}[related_user]    ${notification_data}[related_action]
+    [Teardown]  logout from rwa
