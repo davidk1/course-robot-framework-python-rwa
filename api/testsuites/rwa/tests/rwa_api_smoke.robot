@@ -19,7 +19,7 @@ ${TD_GET_BANK_ACC}       api.testsuites.rwa.testdata.td_get_bank_acc
 
 *** Test Cases ***
 Get notifications list
-    [Documentation]    Test vrati seznam vsech notifikaci prihlaseneho uzivatele.
+    [Documentation]    Test vrati seznam vsech notifikaci prihlaseneho uzivatele. Nevim, jestli jsem dala commit
     [Tags]   smoke
     get notifications list
 
