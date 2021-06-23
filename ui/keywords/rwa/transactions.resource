@@ -25,6 +25,22 @@ Send money
    click new transaction button
    select recepient by name  ${recipient_name}
    enter transaction amount  ${amount}
-   enter_transaction_description ${description}
+   set test variable  ${transaction_amount}    ${amount}
+   enter_transaction_description  ${description}
    submit transaction
    log to console  Zadani prikazu probehlo uspesne - OK
+
+check account balance change
+    [Arguments]   ${expected_balance_change}=${transaction_amount}
+    ...    ${reference_account_balance}=${reference_account_balance}
+    [Documentation]    Overi, zda zmena zustatku na uctu odpovida
+    log to console     ${\n}Vzhodnoceni ymenz na uctu
+    ${actual_account_balance}    get account balance
+    ${result}    set variable
+    ...    ${{${reference_account_balance} - ${actual_account_balance} == 30}}  #${expected_balance_change}
+    return from keyword if  ${result}
+    ${err_message}    catenate  Nepodarilo se uspesne overit zmenu zustatku po odeslani platby
+    ...    puvodni  (referencni zustatek): ${reference_account_balance}
+    ...    konecny zustatek:  ${actual_account_balance}
+    ...    ocekavana zmena yustatku:  ${expected_balance_change}.
+    fail    ${err_message}
