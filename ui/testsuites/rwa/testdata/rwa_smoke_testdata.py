@@ -5,3 +5,8 @@ login_data = {
     "password": "s3cret",
 }
 
+transaction_data = {
+    "recipient": "Edgar Johns",
+    "amount": 30,
+    "description": "Vracim dluh",
+}
