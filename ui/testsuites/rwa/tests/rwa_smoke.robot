@@ -5,6 +5,7 @@ Library    ../../../../_common/
 Resource    ../../../keywords/_common/browser.resource
 Resource    ../../../keywords/rwa/auth.resource
 Resource    ../../../keywords/rwa/transactions.resource
+Resource    ../../../keywords/rwa/notifications.resource
 
 
 Suite Setup    open browser to application    rwa    ${browser}
@@ -15,7 +16,7 @@ Variables    ../testdata/rwa_smoke_testdata.py
 
 *** Variables ***
 ${selenium_command_delay}    0.3
-${browser}    ff
+${browser}    gc
 
 
 *** Test Cases ***
@@ -32,7 +33,16 @@ Send money to recipient
     [Setup]    login to rwa
     get actual account balance
     send money      ${transaction_data}[recipient]    ${transaction_data}[amount]    ${transaction_data}[description]
-    #check account balance change
+    check account balance change
     # hashtag je pro koment
 
     [Teardown]    logout from rwa
+
+Delete notification
+    [Documentation]  Smaze upozorneni
+    [Tags]  notif
+    [Setup]   login to rwa
+    open menu notifications
+    delete notifications    ${notification_data}[related_user]    ${notification_data}[related_action]
+    [Teardown]
+
