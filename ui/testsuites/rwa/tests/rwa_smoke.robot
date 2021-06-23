@@ -4,8 +4,6 @@ Documentation    Zakladni testy aplikace Real World Application
 Library    ../../../../_common/
 Resource    ../../../keywords/_common/browser.resource
 Resource    ../../../keywords/rwa/auth.resource
-Resource    ../../../keywords/rwa/transactions.resource
-Resource    ../../../keywords/rwa/notifications.resource
 
 
 Suite Setup    open browser to application    rwa    ${browser}

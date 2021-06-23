@@ -11,6 +11,23 @@ ${transaction_amount}    12
 
 *** Keywords ***
 Get actual account balance
+    [Documentation]  Vrati aktualni zustatek na ucte
+    log to console  ${\n}Nacitani aktualniho zustatku na uctu
+    ${actual_account_balance}  get account balance
+    set test variable  ${reference_account_balance}
+    log to console  Aktualni vyzse zustatku na ucte je: ${actual_account_balance}
+    return from keyword  ${actual_account_balance}
+
+Send money
+    [Arguments]  ${recipient_name} ${amount}rovnase ${description}rovnaseMoney
+    [Documentation]  Odesle prikay k platbe
+    log to console  ${\n} Odeslani ${amount} uyivateli ${recipient_name}
+    click new transactions button
+    select recipient bz name ${recipient_name}
+    enter transaction amount ${amount}
+    submit transaction
+
+Get actual account balance
     [Documentation]    Vrati aktualni zustatek na uctu a tuto hodnotu ulozi do globalni promenne reference_account_balance
     log to console    ${\n}Nacitani aktualniho zustatku na uctu
     ${actual_account_balance}    get account balance
