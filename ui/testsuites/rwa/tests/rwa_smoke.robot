@@ -27,20 +27,19 @@ Successful login to application
     logout from rwa
 
 Send money to recipient
-    [Documentation]     Odeslani platby
-    [Tags]      smoke  trans
-    [Setup]     login to rwa
+    [Documentation]    Odeslani platby
+    [Tags]    trans
+    [Setup]    login to rwa
     # nactu a ulozim aktualni hodnotu stavu uctu
     get actual account balance
     send money    ${transaction_data}[recipient]    ${transaction_data}[amount]    ${transaction_data}[description]
     check account balance change
-    #pokud bude cas a kapacita, muzeme overit, ze to na druhou stranu prislo.
-    [Teardown]  logout from rwa
+    [Teardown]    logout from rwa
 
 Delete notifications
-    [Documentation]  Smaze upozorneni
-    [Tags]  notif
-    [Setup]  login to rwa
+    [Documentation]    Smaze upozorneni
+    [Tags]    notif
+    [Setup]   login to rwa
     open menu notifications
     delete notifications    ${notification_data}[related_user]    ${notification_data}[related_action]
-    [Teardown]  logout from rwa
+    [Teardown]    logout from rwa

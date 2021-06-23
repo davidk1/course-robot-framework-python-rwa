@@ -12,7 +12,7 @@ class NewTransactionPage(BasePage):
 
     @capture_screenshot_on_failure
     def select_recipient_by_name(self, name='Edgar Johns'):
-        """Vyberte prijemce platbz kliknutim na jeho jmeno
+        """Vybere prijemce platby kliknutim na jeho jmeno.
 
         :param name: prijemce platby
         """
@@ -21,24 +21,22 @@ class NewTransactionPage(BasePage):
 
     @capture_screenshot_on_failure
     def enter_transaction_amount(self, amount=12):
-        """Vyplni vysi transakce
+        """Vyplni vysi transakce.
 
-        :param amount: vzse transakce (int / str)
+        :param amount: vyse transakce [int / str]
         """
         self._wait_for_element_and_type_text(self.transaction_amount_field, str(amount))
 
     @capture_screenshot_on_failure
     def enter_transaction_description(self, description):
-        """
-        :param description: popis platby
-        """
+        """Vyplni pole pro popis platby.
 
+        :param description: popis platby [str]
+        """
         self._wait_for_element_and_type_text(self.transaction_description_field, description)
 
+    @capture_screenshot_on_failure
     def submit_transaction(self):
-        """Stiskne tlacitko 'PAY' pro odeslani platby.
-
-        """
+        """Stiskne tlacitko `PAY` pro odeslani platby."""
         self._wait_and_click_element(self.submit_transaction_button)
-        self.selib.wait_until_page_contains("Paid", 15)
-
+        self.selib.wait_until_page_contains("Paid ", 15)
