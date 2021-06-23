@@ -10,3 +10,8 @@ transaction_data = {
     "amount": 30,
     "description": "Vracim dluh"
 }
+
+notification_data = {
+    "related_user": "Edgar Johns",
+    "related_action": "received"
+}
