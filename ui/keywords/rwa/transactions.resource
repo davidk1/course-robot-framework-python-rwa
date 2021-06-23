@@ -21,7 +21,7 @@ Get actual account balance
 Send money
     [Arguments]     ${recipient_name}  ${amount}=15  ${description}=Money
     [Documentation]     Odesle prikay k platbne pro zadaneho prijemce
-    log to console   ${\n} Odeslano ${amount}$ uzivateli ${recipient_name}
+    log to console   ${\n} Odeslano  ${amount}$ uzivateli  ${recipient_name}
 
     click new transaction button
     select recipient by name  ${recipient_name}
